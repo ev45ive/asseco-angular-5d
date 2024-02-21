@@ -121,3 +121,6 @@ ng g c playlists/components/playlist-editor
 
 ng g m shared -m app
 ng g p shared/pipes/yesno --export 
+
+## Defer
+https://angular.io/guide/defer#overview
