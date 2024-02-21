@@ -13,11 +13,9 @@ export class PlaylistDetailComponent {
     description: 'Awesome playlist',
   };
 
-  // styles = () => ({ color: playlist.public ? 'green' : 'red' })
+  getClasses = () => ({
+    isPublic: this.playlist.public,
+    isPrivate: !this.playlist.public
+  })
 
-  // yesno = yesno;
 }
-
-// function yesno(val: boolean) {
-//   return val ? 'yes' : 'no';
-// }

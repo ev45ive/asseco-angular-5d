@@ -22,7 +22,7 @@
 
   <!-- 
     // Dependency Injection in HTML
-    
+
     const d = new NgStyle(<dd/>, DiffSerivce, RenderSrv)
     d.ngStyle = {
       color: playlist.public ? 'green' : 'red',
@@ -39,6 +39,7 @@
   >
     {{ playlist.public | yesno }}
   </dd>
+  
   <dd
     [ngClass]="{
       isPublic: playlist.public,
@@ -47,6 +48,13 @@
   >
     {{ playlist.public | yesno }}
   </dd>
+  
+  <dd
+    [ngClass]="getClasses()"
+  >
+    {{ playlist.public | yesno }}
+  </dd>
+
 
   <dt>Description</dt>
   <dd>{{ playlist.description }}</dd>
