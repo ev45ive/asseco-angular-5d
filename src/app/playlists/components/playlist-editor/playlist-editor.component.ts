@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 
 @Component({
   selector: 'app-playlist-editor',
   templateUrl: './playlist-editor.component.html',
   styleUrl: './playlist-editor.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush // ☊ d[-_-]b
 })
 export class PlaylistEditorComponent {
   playlist = {
@@ -12,5 +13,5 @@ export class PlaylistEditorComponent {
     public: true,
     description: 'Awesome playlist',
   };
- 
+
 }
