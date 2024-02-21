@@ -88,3 +88,6 @@ https://marketplace.visualstudio.com/items?itemName=quicktype.quicktyp
 
 # Bootstrap
 npm install bootstrap@5.3.3
+
+# Spotifyt
+gipewog618@elixirsd.com
