@@ -1,12 +1,16 @@
+<!-- {{ playlist.name.toLocaleLowerCase() + 123 }} -->
+<!-- {{ if else switch }} -->
 
 <!-- dl>(dt{Name}+dd)*3 -->
 <dl>
-    <dt>Name</dt>
-    <dd>Playlist abc</dd>
-    
-    <dt>Public</dt>
-    <dd style="color: green">Yes</dd>
+  <dt>Name</dt>
+  <dd>{{ playlist.name }}</dd>
 
-    <dt>Description</dt>
-    <dd>Best playlist</dd>
+  <dt>Public</dt>
+  <dd style="color: green">
+    {{ playlist.public ? "Yes" : "No" }}
+  </dd>
+
+  <dt>Description</dt>
+  <dd>{{ playlist.description }}</dd>
 </dl>

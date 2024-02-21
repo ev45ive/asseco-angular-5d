@@ -6,10 +6,11 @@ import { Component } from '@angular/core';
   styleUrl: './playlist-detail.component.scss',
 })
 export class PlaylistDetailComponent {
+  
   playlist = {
     id: '123',
     name: 'Playlist 123',
-    public: true,
+    public: false,
     description: 'Awesome playlist',
   };
 }
