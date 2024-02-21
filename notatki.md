@@ -1,15 +1,15 @@
-node -v 
+node -v
 v20.10.0
 
-npm -v 
+npm -v
 10.2.3
 
-# Git 
+# Git
+
 git -v
 git version 2.42.0.windows.2
 
 git clone https://ev45ive@bitbucket.org/ev45ive/angular-asseco-5.git
-
 
 Ctrl+Shift+P
 Git:Clone
@@ -20,12 +20,15 @@ Select location
 Open window
 
 npm install
+
 > node_modules ???
 
 ## Visual studio Code
+
 Help -> About -> 1.86.0
 
-## Terminal 
+## Terminal
+
 Ctrl+~
 
 ## Angular CLI
@@ -42,28 +45,30 @@ ng new asseco --ssr true --standalone false --directory '.'
 --routing --style csss
 
 ## Powershell - running scritps disabled ...
+
 > Terminal: Select Default Profile -> Git Bash
-[+] new terminal
+> [+] new terminal
 
 # NPM + Semver
-https://semver.org 
+
+https://semver.org
 https://semver.npmjs.com/
 
 npm i // package.json + updates
-npm ci // package-lock.json 
+npm ci // package-lock.json
 
 # Update
+
 https://update.angular.io/
 
-
 ## Devtools
-https://angular.dev/tools/devtools
 
+https://angular.dev/tools/devtools
 
 https://angular.dev/tools/language-service
 
-
 ## Extensions
+
 Angular Language Service
 https://marketplace.visualstudio.com/items?itemName=Angular.ng-template
 
@@ -77,17 +82,36 @@ Paste JSON as Code - quicktype
 https://marketplace.visualstudio.com/items?itemName=quicktype.quicktyp
 
 ## UI Toolkits
+
 - Angular Bootstrap
-- Angular Material 
+- Angular Material
 - Angular Zorro
 
 ## Headless
+
 - Bootstrap
 - Tailwind
 - Angular CDK
 
 # Bootstrap
+
 npm install bootstrap@5.3.3
 
 # Spotifyt
+
 gipewog618@elixirsd.com
+
+## Schematics - generators
+
+ng generate --help
+ng generate component
+
+## Playlists outline
+
+ng g m playlists -m app --routing --route "playlists"
+
+ng g c playlists/containers/playlists-view
+
+ng g c playlists/components/playlist-list
+ng g c playlists/components/playlist-detail
+ng g c playlists/components/playlist-editor
