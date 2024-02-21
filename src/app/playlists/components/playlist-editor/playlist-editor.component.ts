@@ -4,7 +4,7 @@ import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
   selector: 'app-playlist-editor',
   templateUrl: './playlist-editor.component.html',
   styleUrl: './playlist-editor.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush // ☊ d[-_-]b
+  // changeDetection: ChangeDetectionStrategy.OnPush // ☊ d[-_-]b
 })
 export class PlaylistEditorComponent {
   playlist = {
