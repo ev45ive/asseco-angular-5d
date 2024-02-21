@@ -11,8 +11,12 @@ export class PlaylistsViewComponent {
   showDetails() {
     this.mode = 'details';
   }
-  
+
   showEditor() {
     this.mode = 'editor';
   }
+
+  // comparator(param: string) {
+  //   return this.mode == param;
+  // }
 }

@@ -1,14 +1,13 @@
-
 <!-- .row>.col*2 -->
 <div class="row">
-    <div class="col">
-        <app-playlist-list/>
-    </div>
-    <div class="col">
-        <app-playlist-detail [hidden]="false"/>
-        <app-playlist-editor [hidden]="true"/>
+  <div class="col">
+    <app-playlist-list />
+  </div>
+  <div class="col">
+    <app-playlist-detail [hidden]="mode !== 'details'" />
+    <app-playlist-editor [hidden]="mode !== 'editor'" />
 
-        <button class="btn btn-primary">Edit</button>
-        <button class="btn btn-danger">Details</button>
-    </div>
+    <button class="btn btn-primary" (click)="showEditor()">Edit</button>
+    <button class="btn btn-danger" (click)="showDetails()">Details</button>
+  </div>
 </div>
