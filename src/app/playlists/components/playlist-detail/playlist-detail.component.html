@@ -10,7 +10,7 @@
   <dd style="color: green">
     <!-- {{ playlist.public ? "Yes" : "No" }} -->
     <!-- {{ yesno(playlist.public) }} -->
-    {{playlist.public | yesno }}
+    {{ playlist.public | yesno : "Yeah" : "Nope" | uppercase }}
   </dd>
 
   <dt>Description</dt>
