@@ -7,6 +7,7 @@ import { PlaylistsViewComponent } from './containers/playlists-view/playlists-vi
 import { PlaylistListComponent } from './components/playlist-list/playlist-list.component';
 import { PlaylistDetailComponent } from './components/playlist-detail/playlist-detail.component';
 import { PlaylistEditorComponent } from './components/playlist-editor/playlist-editor.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -19,7 +20,10 @@ import { PlaylistEditorComponent } from './components/playlist-editor/playlist-e
   ],
   imports: [
     CommonModule,
-    PlaylistsRoutingModule
+    PlaylistsRoutingModule,
+    
+    // Exports available only in declarations ^
+    SharedModule
   ]
 })
 export class PlaylistsModule { }

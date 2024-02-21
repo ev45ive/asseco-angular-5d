@@ -115,3 +115,9 @@ ng g c playlists/containers/playlists-view
 ng g c playlists/components/playlist-list
 ng g c playlists/components/playlist-detail
 ng g c playlists/components/playlist-editor
+
+
+## Shared module 
+
+ng g m shared -m app
+ng g p shared/pipes/yesno --export 

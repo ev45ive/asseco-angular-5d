@@ -8,7 +8,9 @@
 
   <dt>Public</dt>
   <dd style="color: green">
-    {{ playlist.public ? "Yes" : "No" }}
+    <!-- {{ playlist.public ? "Yes" : "No" }} -->
+    <!-- {{ yesno(playlist.public) }} -->
+    {{playlist.public | yesno }}
   </dd>
 
   <dt>Description</dt>
