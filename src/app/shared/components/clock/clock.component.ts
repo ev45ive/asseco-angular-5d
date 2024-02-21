@@ -29,15 +29,15 @@ export class ClockComponent {
   ngOnInit(): void {
     // this.cdr.detectChanges();
 
-    if (isPlatformServer(this.pid)) return;
+    // if (isPlatformServer(this.pid)) return;
 
-    // don't do ApplicationRef.tick()
-    this.zone.runOutsideAngular(() => {
+    // don't do ApplicationRef.tick() 
+    // this.zone.runOutsideAngular(() => {
       setInterval(() => {
         this.time = new Date().toLocaleTimeString();
         this.cdr.detectChanges();
       }, 1_000);
-    });
+    // });
     /* NG0506: Angular hydration expected the ApplicationRef.isStable() to emit `true`, but it didn't happen within 10000ms. Angular hydration logic depends on the application becoming stable as a signal to complete hydration process. Find more at https://angular.io/errors/NG0506 */
   }
 }
