@@ -23,3 +23,5 @@ import { PlaylistEditorComponent } from './components/playlist-editor/playlist-e
   ]
 })
 export class PlaylistsModule { }
+
+export default PlaylistsModule

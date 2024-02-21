@@ -2,8 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PlaylistsComponent } from './playlists.component';
 import { PlaylistsViewComponent } from './containers/playlists-view/playlists-view.component';
-import { PlaylistDetailComponent } from './components/playlist-detail/playlist-detail.component';
-import { PlaylistListComponent } from './components/playlist-list/playlist-list.component';
 
 const routes: Routes = [
   {
@@ -12,16 +10,13 @@ const routes: Routes = [
     children: [
       {
         path: '',
+        redirectTo: 'mine',
+        pathMatch: 'full',
+      },
+      {
+        path: 'mine',
         component: PlaylistsViewComponent,
       },
-      // {
-      //   path: 'a',
-      //   component: PlaylistDetailComponent,
-      // },
-      // {
-      //   path: 'b',
-      //   component: PlaylistListComponent,
-      // },
     ],
   },
 ];

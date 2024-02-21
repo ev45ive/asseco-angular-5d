@@ -9,8 +9,7 @@ const routes: Routes = [
   },
   {
     path: 'playlists',
-    loadChildren: () =>
-      import('./playlists/playlists.module').then((m) => m.PlaylistsModule),
+    loadChildren: () => import('./playlists/playlists.module'), //.then((m) => m.PlaylistsModule),
   },
   {
     path: '**',
