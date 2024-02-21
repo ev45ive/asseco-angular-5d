@@ -7,20 +7,29 @@
   <dd>{{ playlist.name }}</dd>
 
   <dt>Public</dt>
-  <dd [style.color]="playlist.public ? 'green' : 'red'">
-    <!-- {{ playlist.public ? 'Yes' : 'No'}} -->
-    {{ playlist.public | yesno }}
-  </dd>
-
   <dd [class]="playlist.public ? 'isPublic' : 'isPrivate'">
     {{ playlist.public | yesno }}
   </dd>
+
+
+  <dt>Description</dt>
+  <dd>{{ playlist.description }}</dd>
+</dl>
+
+
+<!-- 
+
+   
+  <dd [style.color]="playlist.public ? 'green' : 'red'">
+   {{ playlist.public ? 'Yes' : 'No'}}
+    {{ playlist.public | yesno }}
+  </dd>
+
 
   <dd [class.isPublic]="playlist.public" [class.isPrivate]="!playlist.public">
     {{ playlist.public | yesno }}
   </dd>
 
-  <!-- 
     // Dependency Injection in HTML
 
     const d = new NgStyle(<dd/>, DiffSerivce, RenderSrv)
@@ -29,7 +38,7 @@
       'border-bottom': '1px solid'
     }
     d.ngDoCheck()
-   -->
+   
 
   <dd
     [ngStyle]="{
@@ -56,6 +65,4 @@
   </dd>
 
 
-  <dt>Description</dt>
-  <dd>{{ playlist.description }}</dd>
-</dl>
+ -->
