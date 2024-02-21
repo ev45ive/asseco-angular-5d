@@ -69,3 +69,13 @@ https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode
 
 Paste JSON as Code - quicktype
 https://marketplace.visualstudio.com/items?itemName=quicktype.quicktyp
+
+## UI Toolkits
+- Angular Bootstrap
+- Angular Material 
+- Angular Zorro
+
+## Headless
+- Bootstrap
+- Tailwind
+- Angular CDK
