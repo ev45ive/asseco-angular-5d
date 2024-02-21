@@ -1,5 +1,13 @@
+<!-- .container>.row>.col -->
 
-<h1>Hello {{title}}!!</h1> 
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1>Hello {{ title }}!!</h1>
 
+      <!-- <button class="btn btn-primary" (click)="login()">Test</button> -->
 
-<button class="btn btn-primary" (click)="login()">Test</button>
+      <router-outlet />
+    </div>
+  </div>
+</div>
