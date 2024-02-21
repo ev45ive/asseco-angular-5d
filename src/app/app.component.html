@@ -3,7 +3,13 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <app-clock class="float-end"/>
+      
+      @defer (on viewport; on timer(5s)) {
+      <app-clock class="float-end" />
+      }@placeholder {
+      <div class="float-end">Tu będzie zegar!</div>
+      }
+
       <h1>Hello {{ title }}!!</h1>
 
       <!-- <button class="btn btn-primary" (click)="login()">Test</button> -->
