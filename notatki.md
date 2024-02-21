@@ -79,3 +79,6 @@ https://marketplace.visualstudio.com/items?itemName=quicktype.quicktyp
 - Bootstrap
 - Tailwind
 - Angular CDK
+
+# Bootstrap
+npm install bootstrap@5.3.3
