@@ -4,28 +4,15 @@
     <app-playlist-list />
   </div>
   <div class="col">
-    <!-- <app-playlist-detail [hidden]="mode !== 'details'" />
-    <app-playlist-editor [hidden]="mode !== 'editor'" /> -->
+    <!-- <app-playlist-detail *ngIf="mode == 'details'" />
+    <app-playlist-editor *ngIf="mode == 'editor'" /> -->
 
-    <!-- ERROR Error: NG0201: No provider for _TemplateRef found. 
-        Find more at https://angular.io/errors/NG0201 -->
-    <!-- <app-playlist-detail [ngIf]="true"/> -->
+    <!-- {{text}} [attr] (event) #ref *template |pipe -->
 
-    <!-- ViewContainerRef -->
-    <!-- <ng-container></ng-container> -->
-
-    <!-- <ng-template [ngIf]="mode === 'details'"><app-playlist-detail /></ng-template> -->
-
-    <ng-template
-      [ngIf]="mode === 'details'"
-      [ngIfThen]="detailsRef"
-      [ngIfElse]="editorRef"
-    ></ng-template>
-
-
-    <!-- <ng-template [ngIf]="mode === 'details'" -->
-    <ng-container *ngIf="mode === 'details'; then detailsRef; else editorRef" data-placki/>
-
+    <ng-container ngSwitch="mode">
+      <app-playlist-detail ngSwitchCase="details" />
+      <app-playlist-editor ngSwitchCase="editor" />
+    </ng-container>
 
     <button class="btn btn-primary" (click)="showEditor()">Edit</button>
     <button class="btn btn-danger" (click)="showDetails()">Details</button>
@@ -39,3 +26,24 @@
 <ng-template #editorRef>
   <app-playlist-editor />
 </ng-template>
+
+<!-- <app-playlist-detail [hidden]="mode !== 'details'" />
+    <app-playlist-editor [hidden]="mode !== 'editor'" /> -->
+
+<!-- ERROR Error: NG0201: No provider for _TemplateRef found. 
+        Find more at https://angular.io/errors/NG0201 -->
+<!-- <app-playlist-detail [ngIf]="true"/> -->
+
+<!-- ViewContainerRef -->
+<!-- <ng-container></ng-container> -->
+
+<!-- <ng-template [ngIf]="mode === 'details'"><app-playlist-detail /></ng-template> -->
+
+<!-- <ng-template
+      [ngIf]="mode === 'details'"
+      [ngIfThen]="detailsRef"
+      [ngIfElse]="editorRef"
+    ></ng-template> -->
+
+<!-- <ng-template [ngIf]="mode === 'details'" -->
+<!-- <ng-container *ngIf="mode === 'details'; then detailsRef; else editorRef" data-placki/> -->
