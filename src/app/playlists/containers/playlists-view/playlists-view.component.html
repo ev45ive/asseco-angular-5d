@@ -1,13 +1,14 @@
-<p (click)="0">playlists-view works!</p>
 
 <!-- .row>.col*2 -->
 <div class="row">
     <div class="col">
         <app-playlist-list/>
-        <app-playlist-editor/>
     </div>
     <div class="col">
-        <app-playlist-detail/>
-        <app-playlist-editor/>
+        <app-playlist-detail [hidden]="false"/>
+        <app-playlist-editor [hidden]="true"/>
+
+        <button class="btn btn-primary">Edit</button>
+        <button class="btn btn-danger">Details</button>
     </div>
 </div>
