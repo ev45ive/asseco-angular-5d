@@ -13,6 +13,8 @@ export class PlaylistDetailComponent {
     description: 'Awesome playlist',
   };
 
+  // styles = () => ({ color: playlist.public ? 'green' : 'red' })
+
   // yesno = yesno;
 }
 
