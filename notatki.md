@@ -45,6 +45,12 @@ ng new asseco --ssr true --standalone false --directory '.'
 > Terminal: Select Default Profile -> Git Bash
 [+] new terminal
 
+# NPM + Semver
+https://semver.org 
+https://semver.npmjs.com/
+
+npm i // package.json + updates
+npm ci // package-lock.json 
 
 # Update
 https://update.angular.io/
