@@ -7,8 +7,17 @@
   <dd>{{ playlist.name }}</dd>
 
   <dt>Public</dt>
-  <dd [style.color]="'green'">
+  <dd [style.color]="playlist.public ? 'green' : 'red'">
     <!-- {{ playlist.public ? 'Yes' : 'No'}} -->
+    {{ playlist.public | yesno }}
+  </dd>
+
+  <dd [class]="playlist.public ? 'isPublic' : 'isPrivate'">
+    {{ playlist.public | yesno }}
+  </dd>
+
+  <dd [class.isPublic]="playlist.public" 
+      [class.isPrivate]="!playlist.public">
     {{ playlist.public | yesno }}
   </dd>
 
