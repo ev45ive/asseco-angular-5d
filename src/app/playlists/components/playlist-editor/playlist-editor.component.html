@@ -8,10 +8,17 @@
       class="form-control"
       id="playlist_name"
       placeholder="Playlist name"
+      
+      #playlistNameRef
       [value]="playlist.name"
-      (input)="playlist.name =  $any($event.target).value "
+      (input)="(0)"
     />
     <div class="float-end text-muted">{{ playlist.name.length }} / 100</div>
+
+    <div class="float-end text-muted">
+      {{ playlistNameRef.value.length }} / 100
+    </div>
+    <!-- (input)="playlist.name =  $any($event.target).value " -->
   </div>
 
   <div class="form-check my-3">
