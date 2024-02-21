@@ -9,9 +9,9 @@
 
     <!-- {{text}} [attr] (event) #ref *template |pipe -->
 
-    <ng-container ngSwitch="mode">
-      <app-playlist-detail ngSwitchCase="details" />
-      <app-playlist-editor ngSwitchCase="editor" />
+    <ng-container [ngSwitch]="mode">
+      <app-playlist-detail *ngSwitchCase="'details'" />
+      <app-playlist-editor *ngSwitchCase="'editor'" />
     </ng-container>
 
     <button class="btn btn-primary" (click)="showEditor()">Edit</button>
