@@ -12,16 +12,6 @@
     {{ playlist.public | yesno }}
   </dd>
 
-  <dd
-    [ngStyle]="{
-      color: playlist.public ? 'green' : 'red',
-      'border-bottom': '1px solid'
-    }"
-  >
-    <!-- {{ playlist.public ? 'Yes' : 'No'}} -->
-    {{ playlist.public | yesno }}
-  </dd>
-
   <dd [class]="playlist.public ? 'isPublic' : 'isPrivate'">
     {{ playlist.public | yesno }}
   </dd>
@@ -30,6 +20,25 @@
     {{ playlist.public | yesno }}
   </dd>
 
+  <!-- 
+    // Dependency Injection in HTML
+    
+    const d = new NgStyle(<dd/>, DiffSerivce, RenderSrv)
+    d.ngStyle = {
+      color: playlist.public ? 'green' : 'red',
+      'border-bottom': '1px solid'
+    }
+    d.ngDoCheck()
+   -->
+
+  <dd
+    [ngStyle]="{
+      color: playlist.public ? 'green' : 'red',
+      'border-bottom': '1px solid'
+    }"
+  >
+    {{ playlist.public | yesno }}
+  </dd>
   <dd
     [ngClass]="{
       isPublic: playlist.public,
