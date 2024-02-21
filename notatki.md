@@ -19,6 +19,9 @@ Clone from URL
 Select location
 Open window
 
+npm install
+> node_modules ???
+
 ## Visual studio Code
 Help -> About -> 1.86.0
 
@@ -45,3 +48,24 @@ ng new asseco --ssr true --standalone false --directory '.'
 
 # Update
 https://update.angular.io/
+
+
+## Devtools
+https://angular.dev/tools/devtools
+
+
+https://angular.dev/tools/language-service
+
+
+## Extensions
+Angular Language Service
+https://marketplace.visualstudio.com/items?itemName=Angular.ng-template
+
+Angular 10 Snippets - Mikael Morlund
+https://marketplace.visualstudio.com/items?itemName=Mikael.Angular-BeastCode
+
+Prettier
+https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode
+
+Paste JSON as Code - quicktype
+https://marketplace.visualstudio.com/items?itemName=quicktype.quicktyp
