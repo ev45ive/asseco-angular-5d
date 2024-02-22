@@ -7,9 +7,12 @@ import { Playlist } from './Playlist';
   selector: 'app-playlist-list',
   templateUrl: './playlist-list.component.html',
   styleUrl: './playlist-list.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush // ☊ d[-_-]b
+  
+  // ☊ d[-_-]b + template events + onChanges IMMUTABLE!
+  changeDetection: ChangeDetectionStrategy.OnPush 
 })
 export class PlaylistListComponent {
+  // oldValue === newValue
 
   @Input({ alias: 'items', required: true })
   playlists: Playlist[] = [];

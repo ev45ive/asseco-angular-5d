@@ -16,7 +16,6 @@ export class PlaylistsViewComponent {
   selectedId = '234';
 
   selectPlaylistById(id: string) {
-    if (this.editor?.hasUnsavedChanges) return;
     this.selectedId = id;
     this.selected = this.playlistsData.find((p) => p.id === id)!;
   }
@@ -33,9 +32,16 @@ export class PlaylistsViewComponent {
     console.log('Saving...', draft);
     this.selected = draft;
 
-    const index = this.playlistsData.findIndex((p) => p.id === draft.id);
-    this.playlistsData.splice(index, 1, draft);
-    
+    // const index = this.playlistsData.findIndex((p) => p.id === draft.id);
+    // this.playlistsData.splice(index, 1, draft);
+
+    // // Defensive copy! fake Immutable!
+    // this.playlistsData = [...this.playlistsData]
+
+    this.playlistsData = this.playlistsData.map((p) =>
+      p.id === draft.id ? draft : p,
+    );
+
     this.showDetails();
   }
 
