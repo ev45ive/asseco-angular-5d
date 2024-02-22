@@ -12,7 +12,11 @@ import { SharedModule } from './shared/shared.module';
   declarations: [
     AppComponent
   ],
-  imports: [BrowserModule, AppRoutingModule, SharedModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    SharedModule
+  ],
   providers: [provideClientHydration()],
   bootstrap: [AppComponent],
 })
