@@ -19,12 +19,14 @@ import { Playlist } from '../playlist-list/Playlist';
   styleUrl: './playlist-editor.component.scss',
   // changeDetection: ChangeDetectionStrategy.OnPush // ☊ d[-_-]b
 })
-export class PlaylistEditorComponent /* implements OnInit, DoCheck, AfterViewInit, OnDestroy */ {
-  
+export class PlaylistEditorComponent {
   // @Input({ required: true }) playlist!: Playlist;
 
+  _playlist!: Playlist;
+
   @Input({ required: true }) set playlist(playlist: Playlist) {
-    this.draft = { ...playlist };
+    this._playlist = playlist; // original
+    this.draft = { ...playlist }; // copy
   }
 
   draft!: Playlist;
@@ -33,14 +35,8 @@ export class PlaylistEditorComponent /* implements OnInit, DoCheck, AfterViewIni
   @Output() save = new EventEmitter<Playlist>();
 
   hasUnsavedChanges = true;
-  // @Output() isDirty = new EventEmitter<boolean>();
 
   constructor() {}
-
-  // ngOnChanges(changes: SimpleChanges): void {
-  //   // console.log('ngOnChanges', changes);
-  //   this.draft = { ...this.playlist }; // Shallow Copy!
-  // }
 
   submit() {
     this.save.emit(this.draft);
