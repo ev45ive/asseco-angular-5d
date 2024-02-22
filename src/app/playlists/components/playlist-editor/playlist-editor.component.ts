@@ -33,9 +33,14 @@ export class PlaylistEditorComponent {
   constructor() {}
 
   submit() {
+    // TODO: send form value (+id) to parent
     // this.save.emit(this.draft);
   }
 
   @ViewChild('playlistNameModelRef', { read: NgModel })
   playlistNameModelRef?: NgModel;
 }
+
+
+// ng.getDirectives($('form'))
+// ng.getDirectives($('ngModel'))
