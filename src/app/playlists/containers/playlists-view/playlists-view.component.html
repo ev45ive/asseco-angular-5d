@@ -9,22 +9,13 @@
   <div class="col">
     @if (mode ==='details') {
     <app-playlist-detail />
+    <!-- <=== add selected playlist -->
     }@else {
     <app-playlist-editor />
+    <!-- <=== add selected playlist -->
     }
-
-    <button class="btn btn-primary" (click)="showEditor()">Edit</button>
-    <button class="btn btn-danger" (click)="showDetails()">Details</button>
   </div>
 </div>
-
-<ng-template #detailsRef>
-  <app-playlist-detail />
-</ng-template>
-
-<ng-template #editorRef>
-  <app-playlist-editor />
-</ng-template>
 
 <!-- 
     @switch (mode) {

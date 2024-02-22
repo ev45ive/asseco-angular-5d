@@ -9,7 +9,8 @@ import { Playlist } from './Playlist';
   styleUrl: './playlist-list.component.scss',
 })
 export class PlaylistListComponent {
-  @Input({ alias: 'items', required: true})  playlists!: Playlist[] 
+  @Input({ alias: 'items', required: true })
+  playlists: Playlist[] = [];
 
   @Output() selectedIdChange = new EventEmitter<string>();
 
@@ -19,9 +20,3 @@ export class PlaylistListComponent {
     this.selectedId = id;
   }
 }
-
-// export class PlaylistSelectedEvent{
-//   static name = 'Playlist Selected'
-//   constructor(readonly id:string){}
-// }
-// new PlaylistSelectedEvent('123')

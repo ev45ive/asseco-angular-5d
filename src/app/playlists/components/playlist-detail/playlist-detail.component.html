@@ -7,9 +7,7 @@
   <dd>{{ playlist.name }}</dd>
 
   <dt>Public</dt>
-  <dd 
-    [class.isPublic]="playlist.public" 
-    [class.isPrivate]="!playlist.public">
+  <dd [class.isPublic]="playlist.public" [class.isPrivate]="!playlist.public">
     {{ playlist.public | yesno }}
   </dd>
 
@@ -17,6 +15,7 @@
   <dd>{{ playlist.description }}</dd>
 </dl>
 
+<button class="btn btn-primary" (click)="(0)">Edit</button>
 
 <!-- <img [ngSrc]="playlist.images[0].url" width="200" height="100"> -->
 
