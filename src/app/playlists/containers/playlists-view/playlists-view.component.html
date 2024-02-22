@@ -1,26 +1,23 @@
 <!-- .row>.col*2 -->
 <div class="row">
   <div class="col">
-    @defer {
-      <app-playlist-list #listRef />
-    }
+    
+    <app-playlist-list [items]="playlistsData" />
+
+    <!-- <input type="text" [value]="selected.name" [placki]="123" /> -->
 
   </div>
   <div class="col">
-  
     @if (mode ==='details') {
-      <app-playlist-detail />
+    <app-playlist-detail />
     }@else {
-      <app-playlist-editor />
+    <app-playlist-editor />
     }
-
-
 
     <button class="btn btn-primary" (click)="showEditor()">Edit</button>
     <button class="btn btn-danger" (click)="showDetails()">Details</button>
   </div>
 </div>
-
 
 <ng-template #detailsRef>
   <app-playlist-detail />
@@ -30,8 +27,7 @@
   <app-playlist-editor />
 </ng-template>
 
-
-    <!-- 
+<!-- 
     @switch (mode) {
       @case ('details') {
         <app-playlist-detail />
@@ -41,9 +37,9 @@
       } 
     } -->
 
-    <!-- <ng-container *ngIf="mode === 'details'; then detailsRef; else editorRef" /> -->
+<!-- <ng-container *ngIf="mode === 'details'; then detailsRef; else editorRef" /> -->
 
-    <!-- <ng-container [ngSwitch]="mode">
+<!-- <ng-container [ngSwitch]="mode">
       <app-playlist-detail *ngSwitchDefault />
       <app-playlist-editor *ngSwitchCase="'editor'" />
     </ng-container> -->
