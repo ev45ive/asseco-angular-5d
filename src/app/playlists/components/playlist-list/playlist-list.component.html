@@ -1,6 +1,6 @@
 <div class="list-group">
   @for (playlist of playlists; track playlist.id) {
-  <a class="list-group-item list-group-item-action">
+  <a class="list-group-item list-group-item-action active">
     {{ $index + 1 }}. {{ playlist.name }} <input />
   </a>
   }

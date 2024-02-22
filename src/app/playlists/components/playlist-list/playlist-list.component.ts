@@ -1,7 +1,6 @@
 import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
-
-NgFor;
+import { mockPlaylists } from './mockPlaylists';
 
 @Component({
   selector: 'app-playlist-list',
@@ -9,36 +8,10 @@ NgFor;
   styleUrl: './playlist-list.component.scss',
 })
 export class PlaylistListComponent {
-  playlists = [
-    {
-      id: '123',
-      name: 'Playlist 123',
-      public: false,
-      description: 'Best playlist',
-    },
-    {
-      id: '234',
-      name: 'Playlist 234',
-      public: true,
-      description: 'Cool playlist',
-    },
-    {
-      id: '345',
-      name: 'Playlist 345',
-      public: false,
-      description: 'Awesome playlist',
-    },
-  ];
+  playlists = mockPlaylists;
+  selectedId = '234';
 
-  trackById(index: number, p: { id: string }) {
-    return p.id;
-  }
-
-  ngOnInit() {
-    setInterval(() => {
-      // this.playlists.push( this.playlists.shift() !)
-      const first = { ...this.playlists.shift()! };
-      this.playlists = [...this.playlists, first];
-    }, 1000);
+  select(id: string) {
+    this.selectedId = id;
   }
 }
