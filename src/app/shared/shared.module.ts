@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { YesnoPipe } from './pipes/yesno.pipe';
 import { ClockComponent } from './components/clock/clock.component';
 
@@ -11,9 +11,11 @@ import { ClockComponent } from './components/clock/clock.component';
     ClockComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    NgOptimizedImage,
   ],
   exports: [
+    NgOptimizedImage,
     CommonModule,
     YesnoPipe,
     ClockComponent
