@@ -31,6 +31,12 @@ export class PlaylistsViewComponent {
 
   savePlaylist(draft: Playlist) {
     console.log('Saving...', draft);
+    this.selected = draft;
+
+    const index = this.playlistsData.findIndex((p) => p.id === draft.id);
+    this.playlistsData.splice(index, 1, draft);
+    
+    this.showDetails();
   }
 
   @ViewChild(PlaylistEditorComponent)
