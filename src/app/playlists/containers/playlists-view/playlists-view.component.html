@@ -9,6 +9,9 @@
 
     <!-- {{text}} [attr] (event) #ref *template |pipe -->
 
+    <!-- Error: NG02000: An element with the "ngSwitchCase" attribute (matching the "NgSwitchCase" directive) must be located inside an element with the "ngSwitch" attribute (matching "NgSwitch" directive) -->
+    <!-- <app-playlist-detail *ngSwitchCase="'details'" /> -->
+
     <ng-container [ngSwitch]="mode">
       <app-playlist-detail *ngSwitchCase="'details'" />
       <app-playlist-editor *ngSwitchCase="'editor'" />
@@ -40,10 +43,10 @@
 <!-- <ng-template [ngIf]="mode === 'details'"><app-playlist-detail /></ng-template> -->
 
 <!-- <ng-template
-      [ngIf]="mode === 'details'"
-      [ngIfThen]="detailsRef"
-      [ngIfElse]="editorRef"
-    ></ng-template> -->
+  [ngIf]="mode === 'details'"
+  [ngIfThen]="detailsRef"
+  [ngIfElse]="editorRef"
+></ng-template> -->
 
-<!-- <ng-template [ngIf]="mode === 'details'" -->
+<!-- <ng-template [ngIf]="mode === 'details'" [ngIfThen]="detailsRef" [ngIfElse]="editorRef"> -->
 <!-- <ng-container *ngIf="mode === 'details'; then detailsRef; else editorRef" data-placki/> -->

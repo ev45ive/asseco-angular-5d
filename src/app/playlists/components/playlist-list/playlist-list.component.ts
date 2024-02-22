@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { PlaylistsViewComponent } from '../../containers/playlists-view/playlists-view.component';
+import { AppComponent } from '../../../app.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-playlist-list',
@@ -9,4 +12,11 @@ export class PlaylistListComponent {
   select() {
     // TODO:
   }
+
+  constructor(private parent: PlaylistsViewComponent,
+    private app: AppComponent,
+    private rotuer: Router
+  ){
+    debugger
+  };
 }
