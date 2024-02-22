@@ -12,11 +12,12 @@ https://nodejs.org/
 git -v
 git version 2.42.0.windows.2
 
-git clone https://bitbucket.org/ev45ive/angular-asseco-5.git
+
+git clone https://github.com/ev45ive/asseco-angular-5d.git
 
 Ctrl+Shift+P
 Git:Clone
-https://ev45ive@bitbucket.org/ev45ive/angular-asseco-5.git
+https://github.com/ev45ive/asseco-angular-5d.git
 
 Clone from URL
 Select location
@@ -132,3 +133,8 @@ ng g p shared/pipes/yesno --export
 
 ## Defer
 https://angular.io/guide/defer#overview
+
+
+# Move to github
+git remote remove origin
+git remote add origin https://github.com/ev45ive/asseco-angular-5d.git

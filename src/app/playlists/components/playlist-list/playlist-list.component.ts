@@ -1,6 +1,7 @@
 import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 import { mockPlaylists } from './mockPlaylists';
+import { Playlist } from './Playlist';
 
 @Component({
   selector: 'app-playlist-list',
@@ -8,7 +9,7 @@ import { mockPlaylists } from './mockPlaylists';
   styleUrl: './playlist-list.component.scss',
 })
 export class PlaylistListComponent {
-  playlists = []; // never[]
+  playlists: Playlist[] = [];
   selectedId = '';
 
   select(id: string) {

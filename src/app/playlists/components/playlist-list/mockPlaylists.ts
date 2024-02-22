@@ -1,6 +1,7 @@
+import { Playlist } from "./Playlist";
 
 
-export const mockPlaylists = [
+export const mockPlaylists: Playlist[] = [
   {
     id: '123',
     name: 'Playlist 123',
