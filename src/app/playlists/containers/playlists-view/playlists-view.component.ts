@@ -15,15 +15,6 @@ export class PlaylistsViewComponent {
 
   showEditor() {
     this.mode = 'editor';
-
-    // this.list?.select()
   }
 
-  // @ViewChild('listRef', { read: PlaylistListComponent })
-  @ViewChild(PlaylistListComponent)
-  list?: PlaylistListComponent;
-
-  // comparator(param: string) {
-  //   return this.mode == param;
-  // }
 }

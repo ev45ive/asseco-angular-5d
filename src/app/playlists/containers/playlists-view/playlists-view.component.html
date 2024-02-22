@@ -4,13 +4,8 @@
     <app-playlist-list #listRef />
   </div>
   <div class="col">
-    <!-- <app-playlist-detail *ngIf="mode == 'details'" />
-    <app-playlist-editor *ngIf="mode == 'editor'" /> -->
-
-    <!-- {{text}} [attr] (event) #ref *template |pipe -->
-
-    <!-- Error: NG02000: An element with the "ngSwitchCase" attribute (matching the "NgSwitchCase" directive) must be located inside an element with the "ngSwitch" attribute (matching "NgSwitch" directive) -->
-    <!-- <app-playlist-detail *ngSwitchCase="'details'" /> -->
+    
+    <ng-container *ngIf="mode === 'details'; then detailsRef; else editorRef" />
 
     <ng-container [ngSwitch]="mode">
       <app-playlist-detail *ngSwitchCase="'details'" />
@@ -29,24 +24,3 @@
 <ng-template #editorRef>
   <app-playlist-editor />
 </ng-template>
-
-<!-- <app-playlist-detail [hidden]="mode !== 'details'" />
-    <app-playlist-editor [hidden]="mode !== 'editor'" /> -->
-
-<!-- ERROR Error: NG0201: No provider for _TemplateRef found. 
-        Find more at https://angular.io/errors/NG0201 -->
-<!-- <app-playlist-detail [ngIf]="true"/> -->
-
-<!-- ViewContainerRef -->
-<!-- <ng-container></ng-container> -->
-
-<!-- <ng-template [ngIf]="mode === 'details'"><app-playlist-detail /></ng-template> -->
-
-<!-- <ng-template
-  [ngIf]="mode === 'details'"
-  [ngIfThen]="detailsRef"
-  [ngIfElse]="editorRef"
-></ng-template> -->
-
-<!-- <ng-template [ngIf]="mode === 'details'" [ngIfThen]="detailsRef" [ngIfElse]="editorRef"> -->
-<!-- <ng-container *ngIf="mode === 'details'; then detailsRef; else editorRef" data-placki/> -->

@@ -8,15 +8,4 @@ import { Router } from '@angular/router';
   templateUrl: './playlist-list.component.html',
   styleUrl: './playlist-list.component.scss',
 })
-export class PlaylistListComponent {
-  select() {
-    // TODO:
-  }
-
-  constructor(private parent: PlaylistsViewComponent,
-    private app: AppComponent,
-    private rotuer: Router
-  ){
-    debugger
-  };
-}
+export class PlaylistListComponent {}
