@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Playlist } from '../playlist-list/Playlist';
 
 @Component({
   selector: 'app-playlist-detail',
@@ -6,16 +7,19 @@ import { Component } from '@angular/core';
   styleUrl: './playlist-detail.component.scss',
 })
 export class PlaylistDetailComponent {
-  playlist = {
-    id: '123',
-    name: 'Playlist 123',
-    public: false,
-    description: 'Awesome playlist',
-  };
+  
+  @Input({ required: true }) playlist!: Playlist;
+
+  // @Output() edit = new EventEmitter<void>();
+  @Output() edit = new EventEmitter<Playlist['id']>();
+
+  // editClick(){
+  //   debugger
+  //   this.edit.emit()
+  // }
 
   getClasses = () => ({
     isPublic: this.playlist.public,
-    isPrivate: !this.playlist.public
-  })
-
+    isPrivate: !this.playlist.public,
+  });
 }

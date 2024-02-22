@@ -1,4 +1,14 @@
-import { ChangeDetectionStrategy, Component, ElementRef, ViewChild, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  Output,
+  ViewChild,
+  signal,
+} from '@angular/core';
+import { Playlist } from '../playlist-list/Playlist';
 
 @Component({
   selector: 'app-playlist-editor',
@@ -7,17 +17,19 @@ import { ChangeDetectionStrategy, Component, ElementRef, ViewChild, signal } fro
   // changeDetection: ChangeDetectionStrategy.OnPush // ☊ d[-_-]b
 })
 export class PlaylistEditorComponent {
-  playlist = {
-    id: '123',
-    name: 'Playlist 123',
-    public: true,
-    description: 'Awesome playlist',
-  };
+  @Input({ required: true }) playlist!: Playlist;
+
+  @Output() cancel = new EventEmitter<void>();
+  @Output() save = new EventEmitter<Playlist>();
+
+  submit() {
+    this.save.emit(this.playlist);
+  }
 
   @ViewChild('playlistNameRef')
   inputRef?: ElementRef<HTMLInputElement>;
-  
+
   ngAfterViewInit() {
-    this.inputRef?.nativeElement.focus()
+    this.inputRef?.nativeElement.focus();
   }
 }

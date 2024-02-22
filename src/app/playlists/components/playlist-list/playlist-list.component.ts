@@ -10,16 +10,15 @@ import { Playlist } from './Playlist';
 })
 export class PlaylistListComponent {
 
-  // ng-input // snippet!
   @Input({ alias: 'items', required: true })
   playlists: Playlist[] = [];
   
-  // ng-output // snippet!
   @Output() selectedIdChange = new EventEmitter<string>();
 
   selectedId = '';
 
   select(id: string) {
     this.selectedId = id;
+    this.selectedIdChange.emit(id)
   }
 }
