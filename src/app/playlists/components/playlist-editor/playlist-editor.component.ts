@@ -1,12 +1,10 @@
 import {
-  ChangeDetectionStrategy,
   Component,
   ElementRef,
   EventEmitter,
   Input,
   Output,
   ViewChild,
-  signal,
 } from '@angular/core';
 import { Playlist } from '../playlist-list/Playlist';
 
