@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, ViewChild, signal } from '@angular/core';
 
 @Component({
   selector: 'app-playlist-editor',
@@ -14,10 +14,10 @@ export class PlaylistEditorComponent {
     description: 'Awesome playlist',
   };
 
-  // @ViewChild('movieplayer')
-  // movieplayer?: ElementRef<HTMLVideoElement>;
+  @ViewChild('playlistNameRef')
+  inputRef?: ElementRef<HTMLInputElement>;
   
-  // ngAfterViewInit() {
-  //   this.movieplayer.focus();
-  // }
+  ngAfterViewInit() {
+    this.inputRef?.nativeElement.focus()
+  }
 }

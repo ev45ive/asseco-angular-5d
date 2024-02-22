@@ -5,9 +5,11 @@
     <div class="col">
       
       @defer (on viewport; on timer(5s)) {
-      <app-clock class="float-end" />
-      }@placeholder {
-      <div class="float-end">Tu będzie zegar!</div>
+        <app-clock class="float-end" />
+      }
+      @loading { <div>loading...</div>}
+      @placeholder {
+        <div class="float-end">Tu będzie zegar!</div>
       }
 
       <h1>Hello {{ title }}!!</h1>
