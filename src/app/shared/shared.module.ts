@@ -14,6 +14,7 @@ import { ClockComponent } from './components/clock/clock.component';
     CommonModule
   ],
   exports: [
+    CommonModule,
     YesnoPipe,
     ClockComponent
   ]
