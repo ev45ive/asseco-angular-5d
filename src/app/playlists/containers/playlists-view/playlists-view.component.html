@@ -10,7 +10,9 @@
   <div class="col">
     @if (mode === "details") {
       <app-playlist-detail [playlist]="selected" (edit)="showEditor()" />
-    } @else {
+    } 
+    
+    @if (mode === "editor"){
       <app-playlist-editor
         [playlist]="selected"
         (cancel)="showDetails()"
