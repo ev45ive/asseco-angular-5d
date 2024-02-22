@@ -1,15 +1,18 @@
+# Instalacje 
 node -v
 v20.10.0
 
 npm -v
 10.2.3
 
+https://nodejs.org/
+
 # Git
 
 git -v
 git version 2.42.0.windows.2
 
-git clone https://ev45ive@bitbucket.org/ev45ive/angular-asseco-5.git
+git clone https://bitbucket.org/ev45ive/angular-asseco-5.git
 
 Ctrl+Shift+P
 Git:Clone
@@ -20,8 +23,8 @@ Select location
 Open window
 
 npm install
-
 > node_modules ???
+npm start 
 
 ## Visual studio Code
 
@@ -43,6 +46,10 @@ ng new --help
 ng new asseco --ssr true --standalone false --directory '.'
 
 --routing --style csss
+
+// local CLI
+npm run ng -- help
+npm run ng -- version
 
 ## Powershell - running scritps disabled ...
 
