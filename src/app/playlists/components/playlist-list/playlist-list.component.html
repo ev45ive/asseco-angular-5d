@@ -1,14 +1,4 @@
 <div class="list-group">
-  <ng-template
-    ngFor="X"
-    [ngForOf]="playlists"
-    let-playlist="$implicit"
-    let-i="index"
-  >
-    <a class="list-group-item list-group-item-action">
-      {{ i + 1 }}. {{ playlist.name }}
-    </a>
-  </ng-template>
 
   <a
     class="list-group-item list-group-item-action"
@@ -19,6 +9,18 @@
 
   <!-- {{playlist}} -- not defined-->
 </div>
+
+<!-- <ng-template
+  ngFor="X"
+  [ngForOf]="playlists"
+  let-playlist="$implicit"
+  let-i="index"
+  >
+  <a class="list-group-item list-group-item-action">
+    {{ i + 1 }}. {{ playlist.name }}
+  </a>
+</ng-template> -->
+
 
 <!-- [ngFor][ngForOf]
 <div ngFor="" ngForOf=""></div> -->

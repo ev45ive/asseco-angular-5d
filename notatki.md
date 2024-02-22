@@ -93,6 +93,7 @@ https://marketplace.visualstudio.com/items?itemName=quicktype.quicktyp
 - Angular Bootstrap
 - Angular Material
 - Angular Zorro
+- https://primeng.org/calendar#datetemplate
 
 ## Headless
 
