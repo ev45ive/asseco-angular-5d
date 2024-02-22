@@ -12,3 +12,6 @@ export class AppComponent {
     this.title = 'Admin'
   }
 }
+
+
+// new AppComponent() ??
