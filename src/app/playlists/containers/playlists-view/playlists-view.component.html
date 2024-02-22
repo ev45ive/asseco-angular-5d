@@ -1,24 +1,20 @@
+<!-- Shift+Alt+F - Format Document -->
+
 <div class="row">
   <div class="col">
-
     <app-playlist-list
       [items]="playlistsData"
       (selectedIdChange)="selectPlaylistById($event)"
     />
-
   </div>
   <div class="col">
-    @if (mode ==='details') {
-      <app-playlist-detail
-       [playlist]="selected"
-       (edit)="showEditor()"
-      />
-    }
-    @else {
-      <app-playlist-editor 
-      [playlist]="selected"
-      (cancel)="showDetails()"
-      (save)="savePlaylist($event)"
+    @if (mode === "details") {
+      <app-playlist-detail [playlist]="selected" (edit)="showEditor()" />
+    } @else {
+      <app-playlist-editor
+        [playlist]="selected"
+        (cancel)="showDetails()"
+        (save)="savePlaylist($event)"
       />
     }
   </div>
