@@ -8,10 +8,11 @@
       class="form-control"
       id="playlist_name"
       placeholder="Playlist name"
-      #playlistNameRef
       [value]="playlist.name"
+      #playlistNameRef
     />
     <div class="float-end text-muted">{{ playlist.name.length }} / 100</div>
+    <!-- <div class="float-end text-muted">{{ playlistNameRef.value.length }} / 100</div> -->
     
     <br />
 

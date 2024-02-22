@@ -14,4 +14,10 @@ export class PlaylistEditorComponent {
     description: 'Awesome playlist',
   };
 
+  // @ViewChild('movieplayer')
+  // movieplayer?: ElementRef<HTMLVideoElement>;
+  
+  // ngAfterViewInit() {
+  //   this.movieplayer.focus();
+  // }
 }
