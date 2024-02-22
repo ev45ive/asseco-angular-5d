@@ -14,7 +14,7 @@ import {
 import { Playlist } from '../playlist-list/Playlist';
 import { NgModel } from '@angular/forms';
 
-NgModel
+NgModel;
 
 @Component({
   selector: 'app-playlist-editor',
@@ -23,16 +23,7 @@ NgModel
   // changeDetection: ChangeDetectionStrategy.OnPush // ☊ d[-_-]b
 })
 export class PlaylistEditorComponent {
-  // @Input({ required: true }) playlist!: Playlist;
-
-  _playlist!: Playlist;
-
-  @Input({ required: true }) set playlist(playlist: Playlist) {
-    this._playlist = playlist; // original
-    // this.draft = { ...playlist }; // copy
-  }
-
-  // draft!: Playlist;
+  @Input({ required: true }) playlist!: Playlist;
 
   @Output() cancel = new EventEmitter<void>();
   @Output() save = new EventEmitter<Playlist>();
@@ -44,4 +35,7 @@ export class PlaylistEditorComponent {
   submit() {
     // this.save.emit(this.draft);
   }
+
+  @ViewChild('playlistNameModelRef', { read: NgModel })
+  playlistNameModelRef?: NgModel;
 }
