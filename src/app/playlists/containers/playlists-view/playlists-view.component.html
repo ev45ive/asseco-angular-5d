@@ -1,35 +1,19 @@
-<!-- .row>.col*2 -->
+
+
 <div class="row">
   <div class="col">
+
     <app-playlist-list
       [items]="playlistsData"
       (selectedIdChange)="selectPlaylistById($event)"
     />
+    
   </div>
   <div class="col">
     @if (mode ==='details') {
-    <app-playlist-detail />
-    <!-- <=== add selected playlist -->
+      <app-playlist-detail />
     }@else {
-    <app-playlist-editor />
-    <!-- <=== add selected playlist -->
+      <app-playlist-editor />
     }
   </div>
 </div>
-
-<!-- 
-    @switch (mode) {
-      @case ('details') {
-        <app-playlist-detail />
-      } 
-      @case ('editor') {
-        <app-playlist-editor />
-      } 
-    } -->
-
-<!-- <ng-container *ngIf="mode === 'details'; then detailsRef; else editorRef" /> -->
-
-<!-- <ng-container [ngSwitch]="mode">
-      <app-playlist-detail *ngSwitchDefault />
-      <app-playlist-editor *ngSwitchCase="'editor'" />
-    </ng-container> -->

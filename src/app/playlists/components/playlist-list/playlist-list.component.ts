@@ -9,9 +9,12 @@ import { Playlist } from './Playlist';
   styleUrl: './playlist-list.component.scss',
 })
 export class PlaylistListComponent {
+
+  // ng-input // snippet!
   @Input({ alias: 'items', required: true })
   playlists: Playlist[] = [];
-
+  
+  // ng-output // snippet!
   @Output() selectedIdChange = new EventEmitter<string>();
 
   selectedId = '';
