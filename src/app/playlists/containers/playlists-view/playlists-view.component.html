@@ -14,22 +14,6 @@
       <app-playlist-editor />
     }
 
-    <!-- 
-    @switch (mode) {
-      @case ('details') {
-        <app-playlist-detail />
-      } 
-      @case ('editor') {
-        <app-playlist-editor />
-      } 
-    } -->
-
-    <ng-container *ngIf="mode === 'details'; then detailsRef; else editorRef" />
-
-    <ng-container [ngSwitch]="mode">
-      <app-playlist-detail *ngSwitchDefault />
-      <app-playlist-editor *ngSwitchCase="'editor'" />
-    </ng-container>
 
 
     <button class="btn btn-primary" (click)="showEditor()">Edit</button>
@@ -45,3 +29,21 @@
 <ng-template #editorRef>
   <app-playlist-editor />
 </ng-template>
+
+
+    <!-- 
+    @switch (mode) {
+      @case ('details') {
+        <app-playlist-detail />
+      } 
+      @case ('editor') {
+        <app-playlist-editor />
+      } 
+    } -->
+
+    <!-- <ng-container *ngIf="mode === 'details'; then detailsRef; else editorRef" /> -->
+
+    <!-- <ng-container [ngSwitch]="mode">
+      <app-playlist-detail *ngSwitchDefault />
+      <app-playlist-editor *ngSwitchCase="'editor'" />
+    </ng-container> -->
