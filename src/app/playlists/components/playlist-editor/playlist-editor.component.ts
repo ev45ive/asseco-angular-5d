@@ -1,8 +1,12 @@
 import {
+  AfterViewInit,
   Component,
+  DoCheck,
   ElementRef,
   EventEmitter,
   Input,
+  OnDestroy,
+  OnInit,
   Output,
   SimpleChanges,
   ViewChild,
@@ -15,7 +19,7 @@ import { Playlist } from '../playlist-list/Playlist';
   styleUrl: './playlist-editor.component.scss',
   // changeDetection: ChangeDetectionStrategy.OnPush // ☊ d[-_-]b
 })
-export class PlaylistEditorComponent {
+export class PlaylistEditorComponent /* implements OnInit, DoCheck, AfterViewInit, OnDestroy */ {
   @Input({ required: true }) playlist!: Playlist;
 
   draft!: Playlist;
@@ -29,23 +33,18 @@ export class PlaylistEditorComponent {
 
   ngOnInit(): void {
     console.log('ngOnInit');
-    
   }
   ngOnChanges(changes: SimpleChanges): void {
-    console.log('ngOnChanges',changes);
-    
+    console.log('ngOnChanges', changes);
   }
   ngDoCheck(): void {
     console.log('ngDoCheck');
-    
   }
   ngAfterViewInit(): void {
     console.log('ngAfterViewInit');
-    
   }
   ngOnDestroy(): void {
     console.log('ngOnDestroy');
-    
   }
 
   submit() {
