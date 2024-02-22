@@ -12,7 +12,7 @@ import {
   selector: 'app-clock',
   styleUrl: './clock.component.scss',
   // templateUrl: './clock.component.html',
-  template: `<span>Time: {{ time }}</span>`,
+  template: ` <span> Time: {{ time }} </span>`,
   changeDetection: ChangeDetectionStrategy.OnPush, // ☊ d[-_-]b
 })
 export class ClockComponent {

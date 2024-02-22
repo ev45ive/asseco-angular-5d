@@ -19,9 +19,7 @@ import { SharedModule } from '../shared/shared.module';
     PlaylistEditorComponent
   ],
   imports: [
-    CommonModule,
     PlaylistsRoutingModule,
-    
     // Exports available only in declarations ^
     SharedModule
   ]
