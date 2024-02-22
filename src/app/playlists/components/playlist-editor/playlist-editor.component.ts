@@ -12,7 +12,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { Playlist } from '../playlist-list/Playlist';
-import { NgModel } from '@angular/forms';
+import { NgForm, NgModel } from '@angular/forms';
 
 NgModel;
 
@@ -33,9 +33,17 @@ export class PlaylistEditorComponent {
   constructor() {}
 
   submit() {
-    // TODO: send form value (+id) to parent
-    // this.save.emit(this.draft);
+    const draft = {
+      // id: this.playlist.id,
+      ...this.playlist,
+      ...this.formRef?.value
+    }
+
+    this.save.emit(draft);
   }
+
+  @ViewChild('formRef', { read: NgForm })
+  formRef?: NgForm;
 
   @ViewChild('playlistNameModelRef', { read: NgModel })
   playlistNameModelRef?: NgModel;
