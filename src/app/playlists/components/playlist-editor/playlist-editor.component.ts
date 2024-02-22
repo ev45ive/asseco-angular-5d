@@ -26,6 +26,8 @@ export class PlaylistEditorComponent /* implements OnInit, DoCheck, AfterViewIni
 
   @Output() cancel = new EventEmitter<void>();
   @Output() save = new EventEmitter<Playlist>();
+  hasUnsavedChanges = true;
+  // @Output() isDirty = new EventEmitter<boolean>();
 
   constructor() {}
 

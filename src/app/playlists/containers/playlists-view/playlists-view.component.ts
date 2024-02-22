@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { mockPlaylists } from '../../components/playlist-list/mockPlaylists';
 import { Playlist } from '../../components/playlist-list/Playlist';
+import { PlaylistEditorComponent } from '../../components/playlist-editor/playlist-editor.component';
 
 @Component({
   selector: 'app-playlists-view',
@@ -15,6 +16,7 @@ export class PlaylistsViewComponent {
   selectedId = '234';
 
   selectPlaylistById(id: string) {
+    if (this.editor?.hasUnsavedChanges) return;
     this.selectedId = id;
     this.selected = this.playlistsData.find((p) => p.id === id)!;
   }
@@ -31,4 +33,6 @@ export class PlaylistsViewComponent {
     console.log('Saving...', draft);
   }
 
+  @ViewChild(PlaylistEditorComponent)
+  editor?: PlaylistEditorComponent;
 }
