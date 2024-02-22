@@ -11,8 +11,13 @@ export class PlaylistsViewComponent {
   mode: 'details' | 'editor' = 'details';
 
   playlistsData = mockPlaylists;
-  selected = mockPlaylists[0]
+  selected = mockPlaylists[0];
   selectedId = '234';
+
+  selectPlaylistById(id: string) {
+    this.selectedId = id;
+    this.selected = this.playlistsData.find((p) => p.id === id)!;
+  }
 
   showDetails() {
     this.mode = 'details';

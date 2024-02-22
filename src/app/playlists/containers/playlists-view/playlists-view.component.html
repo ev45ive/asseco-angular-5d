@@ -1,11 +1,10 @@
 <!-- .row>.col*2 -->
 <div class="row">
   <div class="col">
-    
-    <app-playlist-list [items]="playlistsData" />
-
-    <!-- <input type="text" [value]="selected.name" [placki]="123" /> -->
-
+    <app-playlist-list
+      [items]="playlistsData"
+      (selectedIdChange)="selectPlaylistById($event)"
+    />
   </div>
   <div class="col">
     @if (mode ==='details') {

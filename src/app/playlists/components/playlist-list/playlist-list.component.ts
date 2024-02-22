@@ -1,5 +1,5 @@
 import { NgFor } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { mockPlaylists } from './mockPlaylists';
 import { Playlist } from './Playlist';
 
@@ -9,15 +9,19 @@ import { Playlist } from './Playlist';
   styleUrl: './playlist-list.component.scss',
 })
 export class PlaylistListComponent {
+  @Input({ alias: 'items', required: true})  playlists!: Playlist[] 
 
-  @Input('items') playlists: Playlist[] = [];
-  
+  @Output() selectedIdChange = new EventEmitter<string>();
+
   selectedId = '';
 
   select(id: string) {
     this.selectedId = id;
-
-    // this.playlists.push(123)
-    // this.playlists[0].id
   }
 }
+
+// export class PlaylistSelectedEvent{
+//   static name = 'Playlist Selected'
+//   constructor(readonly id:string){}
+// }
+// new PlaylistSelectedEvent('123')
