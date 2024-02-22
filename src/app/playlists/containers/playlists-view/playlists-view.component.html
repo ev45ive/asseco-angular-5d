@@ -4,7 +4,28 @@
     <app-playlist-list #listRef />
   </div>
   <div class="col">
-    
+  
+    @if (mode ==='details') {
+      <app-playlist-detail />
+    }@else {
+      <app-playlist-editor />
+    }
+
+    <!--  -->
+
+    @switch (mode) {
+      @case ('details') {
+        <app-playlist-detail />
+      } 
+      @case ('editor') {
+        <app-playlist-editor />
+      } 
+    }
+
+    <!--  -->
+    <div>-- Placki ---</div>
+    <!--  -->
+
     <ng-container *ngIf="mode === 'details'; then detailsRef; else editorRef" />
 
     <ng-container [ngSwitch]="mode">
