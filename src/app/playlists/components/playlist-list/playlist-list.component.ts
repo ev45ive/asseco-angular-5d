@@ -8,10 +8,13 @@ import { mockPlaylists } from './mockPlaylists';
   styleUrl: './playlist-list.component.scss',
 })
 export class PlaylistListComponent {
-  playlists = mockPlaylists;
-  selectedId = '234';
+  playlists = []; // never[]
+  selectedId = '';
 
   select(id: string) {
     this.selectedId = id;
+
+    // this.playlists.push(123)
+    // this.playlists[0].id
   }
 }

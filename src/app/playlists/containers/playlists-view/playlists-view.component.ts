@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { PlaylistListComponent } from '../../components/playlist-list/playlist-list.component';
+import { mockPlaylists } from '../../components/playlist-list/mockPlaylists';
 
 @Component({
   selector: 'app-playlists-view',
@@ -9,6 +10,9 @@ import { PlaylistListComponent } from '../../components/playlist-list/playlist-l
 export class PlaylistsViewComponent {
   mode: 'details' | 'editor' = 'details';
 
+  playlists = mockPlaylists;
+  selectedId = '234';
+
   showDetails() {
     this.mode = 'details';
   }
@@ -16,5 +20,4 @@ export class PlaylistsViewComponent {
   showEditor() {
     this.mode = 'editor';
   }
-
 }
