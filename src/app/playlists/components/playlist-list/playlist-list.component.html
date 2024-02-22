@@ -1,33 +1,8 @@
 <div class="list-group">
-
   <a
     class="list-group-item list-group-item-action"
-    *ngFor="let playlist of playlists; index as i; "
+    *ngFor="let playlist of playlists; index as i; trackBy: trackById"
   >
-    {{ i + 1 }}. {{ playlist.name }}
+    {{ i + 1 }}. {{ playlist.name }} <input />
   </a>
-
-  <!-- {{playlist}} -- not defined-->
 </div>
-
-<!-- <ng-template
-  ngFor="X"
-  [ngForOf]="playlists"
-  let-playlist="$implicit"
-  let-i="index"
-  >
-  <a class="list-group-item list-group-item-action">
-    {{ i + 1 }}. {{ playlist.name }}
-  </a>
-</ng-template> -->
-
-
-<!-- [ngFor][ngForOf]
-<div ngFor="" ngForOf=""></div> -->
-
-<!-- <div *ngFor=" of "></div> -->
-
-<!-- for(let p = $implicit of playlists )
-  for(let t = $implicit  of tracks )
-      p.name t.name 
-       -->

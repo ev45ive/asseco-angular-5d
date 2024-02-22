@@ -1,7 +1,7 @@
 import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 
-NgFor
+NgFor;
 
 @Component({
   selector: 'app-playlist-list',
@@ -9,7 +9,6 @@ NgFor
   styleUrl: './playlist-list.component.scss',
 })
 export class PlaylistListComponent {
-
   playlists = [
     {
       id: '123',
@@ -30,4 +29,16 @@ export class PlaylistListComponent {
       description: 'Awesome playlist',
     },
   ];
+
+  trackById(index: number, p: { id: string }) {
+    return p.id;
+  }
+
+  ngOnInit() {
+    setInterval(() => {
+      // this.playlists.push( this.playlists.shift() !)
+      const first = { ...this.playlists.shift()! };
+      this.playlists = [...this.playlists, first];
+    }, 1000);
+  }
 }

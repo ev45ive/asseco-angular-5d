@@ -1,7 +1,10 @@
 <!-- .row>.col*2 -->
 <div class="row">
   <div class="col">
-    <app-playlist-list #listRef />
+    @defer {
+      <app-playlist-list #listRef />
+    }
+
   </div>
   <div class="col">
   
