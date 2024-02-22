@@ -27,15 +27,14 @@ export class PlaylistEditorComponent /* implements OnInit, DoCheck, AfterViewIni
   @Output() cancel = new EventEmitter<void>();
   @Output() save = new EventEmitter<Playlist>();
 
-  constructor() {
-    // this.draft = this.playlist;
-  }
+  constructor() {}
 
   ngOnInit(): void {
     console.log('ngOnInit');
   }
   ngOnChanges(changes: SimpleChanges): void {
     console.log('ngOnChanges', changes);
+    this.draft = { ...this.playlist }; // Shallow Copy!
   }
   ngDoCheck(): void {
     console.log('ngDoCheck');
@@ -48,7 +47,7 @@ export class PlaylistEditorComponent /* implements OnInit, DoCheck, AfterViewIni
   }
 
   submit() {
-    this.save.emit(this.playlist);
+    this.save.emit(this.draft);
   }
 
   // @ViewChild('playlistNameRef')
