@@ -20,42 +20,29 @@ import { Playlist } from '../playlist-list/Playlist';
   // changeDetection: ChangeDetectionStrategy.OnPush // ☊ d[-_-]b
 })
 export class PlaylistEditorComponent /* implements OnInit, DoCheck, AfterViewInit, OnDestroy */ {
-  @Input({ required: true }) playlist!: Playlist;
+  
+  // @Input({ required: true }) playlist!: Playlist;
+
+  @Input({ required: true }) set playlist(playlist: Playlist) {
+    this.draft = { ...playlist };
+  }
 
   draft!: Playlist;
 
   @Output() cancel = new EventEmitter<void>();
   @Output() save = new EventEmitter<Playlist>();
+
   hasUnsavedChanges = true;
   // @Output() isDirty = new EventEmitter<boolean>();
 
   constructor() {}
 
-  ngOnInit(): void {
-    console.log('ngOnInit');
-  }
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log('ngOnChanges', changes);
-    this.draft = { ...this.playlist }; // Shallow Copy!
-  }
-  ngDoCheck(): void {
-    console.log('ngDoCheck');
-  }
-  ngAfterViewInit(): void {
-    console.log('ngAfterViewInit');
-  }
-  ngOnDestroy(): void {
-    console.log('ngOnDestroy');
-  }
+  // ngOnChanges(changes: SimpleChanges): void {
+  //   // console.log('ngOnChanges', changes);
+  //   this.draft = { ...this.playlist }; // Shallow Copy!
+  // }
 
   submit() {
     this.save.emit(this.draft);
   }
-
-  // @ViewChild('playlistNameRef')
-  // inputRef?: ElementRef<HTMLInputElement>;
-
-  // ngAfterViewInit() {
-  //   this.inputRef?.nativeElement.focus();
-  // }
 }
