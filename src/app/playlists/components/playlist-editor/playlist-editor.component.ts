@@ -12,6 +12,9 @@ import {
   ViewChild,
 } from '@angular/core';
 import { Playlist } from '../playlist-list/Playlist';
+import { NgModel } from '@angular/forms';
+
+NgModel
 
 @Component({
   selector: 'app-playlist-editor',
@@ -26,10 +29,10 @@ export class PlaylistEditorComponent {
 
   @Input({ required: true }) set playlist(playlist: Playlist) {
     this._playlist = playlist; // original
-    this.draft = { ...playlist }; // copy
+    // this.draft = { ...playlist }; // copy
   }
 
-  draft!: Playlist;
+  // draft!: Playlist;
 
   @Output() cancel = new EventEmitter<void>();
   @Output() save = new EventEmitter<Playlist>();
@@ -39,6 +42,6 @@ export class PlaylistEditorComponent {
   constructor() {}
 
   submit() {
-    this.save.emit(this.draft);
+    // this.save.emit(this.draft);
   }
 }
