@@ -1,7 +1,22 @@
 <div class="list-group">
-    <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
-      Playlist 123
+
+  <ng-template ngFor [ngForOf]="playlists" let-playlist="$implicit" let-i="index">
+    <a class="list-group-item list-group-item-action">
+     {{i+1}}. {{playlist.name}}
     </a>
-    <a href="#" class="list-group-item list-group-item-action">  Playlist 234</a>
-    <a href="#" class="list-group-item list-group-item-action">  Playlist 345</a>
-  </div>
+  </ng-template>
+
+  <!-- {{playlist}} -- not defined-->
+
+</div>
+
+<!-- [ngFor][ngForOf]
+<div ngFor="" ngForOf=""></div> -->
+
+<!-- <div *ngFor=" of "></div> -->
+
+
+<!-- for(let p = $implicit of playlists )
+  for(let t = $implicit  of tracks )
+      p.name t.name 
+       -->
