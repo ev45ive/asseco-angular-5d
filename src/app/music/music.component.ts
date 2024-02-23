@@ -2,6 +2,7 @@ import { Component, NgModule } from '@angular/core';
 
 @Component({
   selector: 'app-music',
+  standalone: true,
   templateUrl: './music.component.html',
   styleUrl: './music.component.scss',
 })
