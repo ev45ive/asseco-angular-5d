@@ -135,6 +135,25 @@ ng g p shared/pipes/yesno --export
 https://angular.io/guide/defer#overview
 
 
-# Move to github
+## Move to github
 git remote remove origin
 git remote add origin https://github.com/ev45ive/asseco-angular-5d.git
+
+
+## Music Search module vs standalone
+
+ng g m music -m app --routing --route "music"
+
+ng g c music/containers/AlbumSearchView --standalone
+ng g c music/containers/AlbumDetailView  --standalone
+
+ng g c music/components/SearchForm --standalone
+ng g c music/components/ResultsGrid --standalone
+ng g c music/components/AlbumCard --standalone
+
+ng g m core -m app
+ng g s core/services/MusicAPI
+
+
+
+
