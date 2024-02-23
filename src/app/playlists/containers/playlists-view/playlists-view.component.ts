@@ -9,11 +9,11 @@ import { PlaylistEditorComponent } from '../../components/playlist-editor/playli
   styleUrl: './playlists-view.component.scss',
 })
 export class PlaylistsViewComponent {
-  mode: 'details' | 'editor' | 'creator' = 'creator';
+  mode: 'details' | 'editor' | 'creator' = 'details';
 
   playlistsData = mockPlaylists;
   // selected: Playlist | undefined = mockPlaylists[0];
-  selected?: Playlist  //= mockPlaylists[0];
+  selected?: Playlist; //= mockPlaylists[0];
   selectedId = '234';
 
   selectPlaylistById(id: string) {
@@ -36,10 +36,21 @@ export class PlaylistsViewComponent {
   createPlaylist(draft: Playlist) {
     console.log('Adding new playlist...', draft);
     draft.id = crypto.randomUUID();
+
+    // this.playlistsData = [...this.playlistsData]; // Defensive copy
+    // this.playlistsData.push(draft); // Mutation!!!
+
+    // this.playlistsData = this.playlistsData.concat(draft) // Immutable
+
+    this.playlistsData = [...this.playlistsData, draft] // Immutable
+
+    this.selected = draft;
+    this.showDetails();
   }
 
   savePlaylist(draft: Playlist) {
     console.log('Saving...', draft);
+
     this.selected = draft;
     this.playlistsData = this.playlistsData.map((p) =>
       p.id === draft.id ? draft : p,
