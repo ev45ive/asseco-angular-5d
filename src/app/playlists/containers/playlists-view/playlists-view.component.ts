@@ -12,30 +12,13 @@ export class PlaylistsViewComponent {
   mode: 'details' | 'editor' | 'creator' = 'details';
 
   playlistsData = mockPlaylists;
-  selected = mockPlaylists[0];
+  // selected: Playlist | undefined = mockPlaylists[0];
+  selected?: Playlist  //= mockPlaylists[0];
   selectedId = '234';
 
   selectPlaylistById(id: string) {
     this.selectedId = id;
-    // const selected = this.playlistsData.find((p) => p.id === id) as any // !!!
-    // selected.get.me.a.million.dollars.now(id)
-
-    // const selected = this.playlistsData.find((p) => p.id === id) as Playlist // cast 
-    // const selected = this.playlistsData.find((p) => p.id === id)! // non-null assertion
-
-    const selected = this.playlistsData.find((p) => p.id === id);
-
-    // Type-Narrowing
-    if (selected !== undefined) { // nullcheck
-      this.selected = selected; // Playlist | undefined
-    }
-    else if (selected === undefined) {
-      selected; // undefined
-    } 
-    else {
-      selected satisfies never; // never
-      throw new Error('Unsuported playlist type')
-    }
+    this.selected = this.playlistsData.find((p) => p.id === id);
   }
 
   showDetails() {

@@ -10,14 +10,16 @@
   <div class="col">
     @if (mode === "details") {
       <app-playlist-detail [playlist]="selected" (edit)="showEditor()" />
-    } 
-    
-    @if (mode === "editor"){
-      <app-playlist-editor
-        [playlist]="selected"
-        (cancel)="showDetails()"
-        (save)="savePlaylist($event)"
-      />
+    }
+
+    @if (selected) {
+      @if (mode === "editor") {
+        <app-playlist-editor
+          [playlist]="selected"
+          (cancel)="showDetails()"
+          (save)="savePlaylist($event)"
+        />
+      }
     }
   </div>
 </div>

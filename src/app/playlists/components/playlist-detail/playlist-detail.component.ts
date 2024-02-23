@@ -8,18 +8,8 @@ import { Playlist } from '../playlist-list/Playlist';
 })
 export class PlaylistDetailComponent {
   
-  @Input({ required: true }) playlist!: Playlist;
+  @Input({ required: true }) playlist?: Playlist;
 
-  // @Output() edit = new EventEmitter<void>();
   @Output() edit = new EventEmitter<Playlist['id']>();
 
-  // editClick(){
-  //   debugger
-  //   this.edit.emit()
-  // }
-
-  getClasses = () => ({
-    isPublic: this.playlist.public,
-    isPrivate: !this.playlist.public,
-  });
 }
