@@ -1,5 +1,4 @@
 <app-navigation #navApi>
-
   <!-- {{navApi.open}} -->
 
   <li #appLink appLink class="nav-item">
@@ -13,6 +12,10 @@
   <li #appLink appLink class="nav-item">
     <a class="nav-link" href="#">Pricing</a>
   </li>
+
+  <ng-container ngProjectAs="profile">
+    <button class="btn btn-dark" (click)="login()">Login</button>
+  </ng-container>
 
   <!-- Content -->
   <router-outlet />
