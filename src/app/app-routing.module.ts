@@ -5,17 +5,16 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: 'playlists',
-    pathMatch: 'full', // match full length
+    pathMatch: 'full',
   },
   {
     path: 'playlists',
-    loadChildren: () => import('./playlists/playlists.module'), //.then((m) => m.PlaylistsModule),
+    loadChildren: () => import('./playlists/playlists.module'),
   },
   {
     path: '**',
-    // component: PageNotFound // TODO
     redirectTo: 'playlists',
-    pathMatch: 'full', // match full length
+    pathMatch: 'full',
   },
 ];
 

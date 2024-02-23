@@ -13,26 +13,26 @@
       #playlistNameRef
       #playlistNameModelRef="ngModel"
       name="name"
-      
       [ngModel]="playlist.name"
-
       required="true"
       minlength="3"
-      pattern="^\\p{Lu}.*$"
-
+      pattern="^[A-ZĘŚŁĄŻÓŁĆ].*$"
       appCensor="batman"
     />
+    @if (playlistNameModelRef.touched || playlistNameModelRef.dirty) {
+      @if (playlistNameModelRef.hasError("required")) {
+        <span class="text-danger">Name is required</span>
+      }
 
-    @if (playlistNameModelRef.hasError("required")) {
-      <span class="text-danger">Name is required</span>
-    }
+      @if (playlistNameModelRef.getError("minlength"); as error) {
+        <span
+          >Name should have at least {{ error.requiredLength }} characters</span
+        >
+      }
 
-    @if (playlistNameModelRef.getError("minlength"); as error) {
-      <span>Name should have at least {{ error.requiredLength }} characters</span>
-    }
-
-    @if (playlistNameModelRef.getError("censor"); as error) {
-      <span>Name cant have "{{ error.badword }}" word</span>
+      @if (playlistNameModelRef.getError("censor"); as error) {
+        <span>Name cant have "{{ error.badword }}" word</span>
+      }
     }
 
     <div class="float-end text-muted">

@@ -32,11 +32,16 @@ export class PlaylistEditorComponent {
   constructor() {}
 
   submit() {
+    this.formRef?.form.markAllAsTouched();
+    if (this.formRef?.invalid) return;
+
     const draft = {
       // id: this.playlist.id,
       ...this.playlist,
       ...this.formRef?.value,
     };
+
+    // this.formRef?.resetForm()
 
     this.save.emit(draft);
   }
