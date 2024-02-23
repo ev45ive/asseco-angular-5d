@@ -1,9 +1,15 @@
 import { Injectable } from '@angular/core';
+import mockAlbums from '../mocks/mockAlbums';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MusicAPIService {
+  constructor() {}
 
-  constructor() { }
+  search(query = '') {
+    console.log('Searching.... ', query);
+
+    return mockAlbums;
+  }
 }

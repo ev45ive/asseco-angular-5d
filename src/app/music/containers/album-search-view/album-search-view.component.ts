@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { SearchFormComponent } from '../../components/search-form/search-form.component';
 import { ResultsGridComponent } from '../../components/results-grid/results-grid.component';
+import { MusicAPIService } from '../../../core/services/music-api.service';
 
 @Component({
   selector: 'app-album-search-view',
@@ -9,4 +10,12 @@ import { ResultsGridComponent } from '../../components/results-grid/results-grid
   standalone: true,
   imports: [SearchFormComponent, ResultsGridComponent],
 })
-export class AlbumSearchViewComponent {}
+export class AlbumSearchViewComponent {
+  
+  // constructor(private api:MusicAPIService){}
+  api = inject(MusicAPIService);
+
+  searchAlbums(query = '') {
+    // this.api.search(query) ????
+  }
+}
