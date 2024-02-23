@@ -28,7 +28,7 @@ export const authConfig: AuthConfig = {
   // The first four are defined by OIDC.
   // Important: Request offline_access to get a refresh token
   // The api scope is a usecase specific one
-  scope: 'user-read-private user-read-email',
+  scope: 'user-read-private user-read-email playlist-read-private playlist-read-collaborative playlist-modify-private playlist-modify-public',
 
   customQueryParams: {
     show_dialog: 'true',
