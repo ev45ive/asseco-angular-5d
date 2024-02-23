@@ -1,15 +1,16 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import mockAlbums from '../mocks/mockAlbums';
-import { environment } from '../../../environments/environment';
+import { API_URL } from '../tokens';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MusicAPIService {
+  // api_url = environment.api_url
 
-  api_url = environment.api_url
+  // constructor(@Inject(API_URL) private api_url:string) {}
 
-  constructor() {}
+  api_url = inject(API_URL);
 
   search(query = '') {
     console.log('Searching.... ', query);
