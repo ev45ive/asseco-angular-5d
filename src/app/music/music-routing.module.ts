@@ -6,6 +6,7 @@ import { AlbumSearchViewComponent } from './containers/album-search-view/album-s
 const routes: Routes = [
   {
     path: /* music/.. */ '',
+    providers: [],
     component: MusicComponent,
     children: [
       {
@@ -18,14 +19,7 @@ const routes: Routes = [
         component: AlbumSearchViewComponent,
       },
     ],
-    // loadChildren(..)
   },
 ];
 
-// @NgModule({
-//   imports: [RouterModule.forChild(routes)],
-//   exports: [RouterModule],
-// })
-// export class MusicRoutingModule {}
-
-export default routes
+export default routes;

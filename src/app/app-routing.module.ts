@@ -10,10 +10,12 @@ const routes: Routes = [
   },
   {
     path: 'playlists',
+    providers: [],
     loadChildren: () => import('./playlists/playlists.module'),
   },
   {
     path: 'music',
+    providers: [],
     loadChildren: () => import('./music/music-routing.module'),
   },
   {
@@ -28,5 +30,5 @@ const routes: Routes = [
   exports: [RouterModule],
 })
 export class AppRoutingModule {
-  constructor(@Inject(ROUTES) private routes: Routes[]) {}
+  // constructor(@Inject(ROUTES) private routes: Routes[]) {}
 }
