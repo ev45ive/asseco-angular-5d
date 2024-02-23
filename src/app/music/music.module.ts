@@ -15,3 +15,5 @@ import { MusicComponent } from './music.component';
   ]
 })
 export class MusicModule { }
+
+export default MusicModule

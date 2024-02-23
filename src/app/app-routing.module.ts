@@ -4,14 +4,18 @@ import { ROUTES, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'playlists',
+    // redirectTo: 'music/search',
+    redirectTo: 'music',
     pathMatch: 'full',
   },
   {
     path: 'playlists',
     loadChildren: () => import('./playlists/playlists.module'),
   },
-  { path: 'music', loadChildren: () => import('./music/music.module').then(m => m.MusicModule) },
+  {
+    path: 'music',
+    loadChildren: () => import('./music/music.module'),
+  },
   {
     path: '**',
     redirectTo: 'playlists',
