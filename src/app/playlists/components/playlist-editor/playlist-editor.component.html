@@ -13,19 +13,24 @@
       #playlistNameRef
       #playlistNameModelRef="ngModel"
       name="name"
-
       [ngModel]="playlist.name"
-
       required="true"
       minlength="3"
       pattern="^\\p{Lu}.*$"
     />
-    <span class="text-danger" *ngIf="playlistNameModelRef.hasError('required')"
-      >Name is required</span
+
+    @if (playlistNameModelRef.hasError("required")) {
+      <span class="text-danger">Name is required</span>
+    }
+    <span
+      class="text-danger"
+      *ngIf="playlistNameModelRef.getError('minlength') as error"
+      >Name should have at least {{ error.requiredLength }}characters</span
     >
-    <span class="text-danger" *ngIf="playlistNameModelRef.hasError('minlength')"
-      >Name should have at least {{playlistNameModelRef.getError('minlength').requiredLength}} characters</span
-    >
+
+    <div *ngFor="let item = $implicit of [1, 2, 3]">
+      {{ item }}
+    </div>
 
     <!-- <pre>{{playlistNameModelRef.errors | json }}</pre> -->
 
