@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand bg-body-tertiary">
+  <div class="container">
+    <a class="navbar-brand" href="#">Music App</a>
+    <button class="navbar-toggler" type="button" (click)="open = !open">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" [class.show]="open">
+      <ul class="navbar-nav">
+        <ng-content select="[appLink]"></ng-content>
+        
+      </ul>
+      <div class="ms-auto">
+        @defer (on viewport; on timer(5s)) {
+          <app-clock />
+        } @loading {
+          <div>loading...</div>
+        } @placeholder {
+          <div>Tu będzie zegar!</div>
+        }
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="row">
+    <div class="col pt-3">
+        <!-- Content Projection -->
+        <ng-content></ng-content>
+    </div>
+  </div>
+</div>

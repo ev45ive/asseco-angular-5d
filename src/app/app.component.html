@@ -1,22 +1,17 @@
-<!-- .container>.row>.col -->
+<app-navigation>
 
-<div class="container">
-  <div class="row">
-    <div class="col">
-      
-      @defer (on viewport; on timer(5s)) {
-        <app-clock class="float-end" />
-      }
-      @loading { <div>loading...</div>}
-      @placeholder {
-        <div class="float-end">Tu będzie zegar!</div>
-      }
+  <li appLink class="nav-item">
+    <a class="nav-link active" aria-current="page" href="#">Home</a>
+  </li>
 
-      <h1>Hello {{ title }}!!</h1>
+  <li appLink class="nav-item">
+    <a class="nav-link" href="#">Features</a>
+  </li>
 
-      <!-- <button class="btn btn-primary" (click)="login()">Test</button> -->
+  <li appLink class="nav-item">
+    <a class="nav-link" href="#">Pricing</a>
+  </li>
 
-      <router-outlet />
-    </div>
-  </div>
-</div>
+  <!-- Content -->
+  <router-outlet />
+</app-navigation>
