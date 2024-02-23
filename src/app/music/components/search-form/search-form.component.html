@@ -1,5 +1,14 @@
-<div class="input-group mb-3">
-  <input type="text" class="form-control" placeholder="Search" />
+<form (submit)="submit()">
 
-  <button class="btn btn-outline-secondary" type="button">Search</button>
-</div>
+  <div class="input-group mb-3">
+    <input
+      type="text"
+      [(ngModel)]="query"
+      name="query"
+      class="form-control"
+      placeholder="Search"
+    />
+
+    <button class="btn btn-outline-secondary" type="submit">Search</button>
+  </div>
+</form>

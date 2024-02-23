@@ -15,12 +15,12 @@ export class AlbumSearchViewComponent {
   api = inject(MusicAPIService);
   results: Album[] = [];
 
-  ngOnInit(): void {
-    // FIXME: To tylko na chfile!
-    this.searchAlbums('batman');
-  }
-
   searchAlbums(query = '') {
     this.results = this.api.search(query);
   }
+  
+  // ngOnInit(): void {
+  //   // FIXME: To tylko na chfile!
+  //   this.searchAlbums('batman');
+  // }
 }
