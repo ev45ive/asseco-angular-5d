@@ -4,6 +4,7 @@ import { YesnoPipe } from './pipes/yesno.pipe';
 import { ClockComponent } from './components/clock/clock.component';
 import { FormsModule } from '@angular/forms';
 import { NavigationComponent } from './layout/navigation/navigation.component';
+import { CensorDirective } from './directives/censor.directive';
 
 
 
@@ -11,7 +12,8 @@ import { NavigationComponent } from './layout/navigation/navigation.component';
   declarations: [
     YesnoPipe,
     ClockComponent,
-    NavigationComponent
+    NavigationComponent,
+    CensorDirective
   ],
   imports: [
     CommonModule,
@@ -24,7 +26,8 @@ import { NavigationComponent } from './layout/navigation/navigation.component';
     CommonModule,
     YesnoPipe,
     ClockComponent,
-    NavigationComponent
+    NavigationComponent,
+    CensorDirective
   ]
 })
 export class SharedModule { }
