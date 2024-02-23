@@ -6,20 +6,14 @@ import { FormsModule } from '@angular/forms';
 import { NavigationComponent } from './layout/navigation/navigation.component';
 import { CensorDirective } from './directives/censor.directive';
 
-
-
 @NgModule({
   declarations: [
     YesnoPipe,
     ClockComponent,
     NavigationComponent,
-    CensorDirective
+    CensorDirective,
   ],
-  imports: [
-    CommonModule,
-    NgOptimizedImage,
-    FormsModule,
-  ],
+  imports: [CommonModule, NgOptimizedImage, FormsModule],
   exports: [
     NgOptimizedImage,
     FormsModule,
@@ -27,7 +21,7 @@ import { CensorDirective } from './directives/censor.directive';
     YesnoPipe,
     ClockComponent,
     NavigationComponent,
-    CensorDirective
-  ]
+    CensorDirective,
+  ],
 })
-export class SharedModule { }
+export class SharedModule {}

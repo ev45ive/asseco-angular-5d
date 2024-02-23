@@ -1,1 +1,16 @@
-<p>results-grid works!</p>
+<div class="row row-cols-1 row-cols-sm-4 g-0">
+  @for (album of [1, 2, 3, 4, 5]; track $index) {
+    <div class="col">
+      <div class="card">
+        <img src="https://placekitten.com/200/200" class="card-img-top" alt="..." />
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">
+            This is a longer card with supporting text below as a natural
+            lead-in to additional content. This content is a little bit longer.
+          </p>
+        </div>
+      </div>
+    </div>
+  }
+</div>
