@@ -28,11 +28,11 @@
       >Name should have at least {{ error.requiredLength }}characters</span
     >
 
-    <div *ngFor="let item = $implicit of [1, 2, 3]">
-      {{ item }}
-    </div>
-
-    <!-- <pre>{{playlistNameModelRef.errors | json }}</pre> -->
+    @if (playlistNameModelRef.getError("minlength"); as error) {
+      <span
+        >Name should have at least {{ error.requiredLength }}characters</span
+      >
+    }
 
     <div class="float-end text-muted">
       {{ playlistNameModelRef.value?.length }} / 100
