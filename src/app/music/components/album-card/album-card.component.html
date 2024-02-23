@@ -1,6 +1,18 @@
 <div class="card">
-  <img src="https://placekitten.com/200/200" class="card-img-top" alt="..." />
+  @if (album.images[0]; as image) {
+    <img
+      [ngSrc]="image.url"
+      class="card-img-top h-auto"
+      priority
+      alt="..."
+      [width]="image.width"
+      [height]="image.height"
+    />
+  } @else {
+    <p>Nie ma obrazka! ;-(</p>
+  }
+
   <div class="card-body">
-    <h5 class="card-title">Album title</h5>
+    <h5 class="card-title">{{ album.name }}</h5>
   </div>
 </div>

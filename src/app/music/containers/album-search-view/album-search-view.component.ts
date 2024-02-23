@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { SearchFormComponent } from '../../components/search-form/search-form.component';
 import { ResultsGridComponent } from '../../components/results-grid/results-grid.component';
 import { MusicAPIService } from '../../../core/services/music-api.service';
+import { Album } from '../../../core/model/Album';
 
 @Component({
   selector: 'app-album-search-view',
@@ -11,11 +12,15 @@ import { MusicAPIService } from '../../../core/services/music-api.service';
   imports: [SearchFormComponent, ResultsGridComponent],
 })
 export class AlbumSearchViewComponent {
-  
-  // constructor(private api:MusicAPIService){}
   api = inject(MusicAPIService);
+  results: Album[] = [];
+
+  ngOnInit(): void {
+    // FIXME: To tylko na chfile!
+    this.searchAlbums('batman');
+  }
 
   searchAlbums(query = '') {
-    // this.api.search(query) ????
+    this.results = this.api.search(query);
   }
 }

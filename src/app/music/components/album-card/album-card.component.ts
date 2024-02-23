@@ -1,12 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Album } from '../../../core/model/Album';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-album-card',
   standalone: true,
-  imports: [],
+  imports: [NgOptimizedImage],
   templateUrl: './album-card.component.html',
-  styleUrl: './album-card.component.scss'
+  styleUrl: './album-card.component.scss',
 })
 export class AlbumCardComponent {
-
+  // @Input() album?: Album
+  @Input({ required: true }) album!: Album;
 }

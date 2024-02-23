@@ -1,7 +1,7 @@
 <div class="row row-cols-1 row-cols-sm-4 g-0">
-  @for (album of [1, 2, 3, 4, 5]; track $index) {
+  @for (album of results; track album.id) {
     <div class="col">
-      <app-album-card></app-album-card>
+      <app-album-card [album]="album"></app-album-card>
     </div>
   }
 </div>
