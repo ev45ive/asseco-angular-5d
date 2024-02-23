@@ -6,12 +6,7 @@ import { MusicComponent } from './music.component';
 import { AlbumSearchViewComponent } from './containers/album-search-view/album-search-view.component';
 
 @NgModule({
-  imports: [
-    MusicComponent,
-    AlbumSearchViewComponent,
-    CommonModule,
-    MusicRoutingModule,
-  ],
+  imports: [MusicRoutingModule],
 })
 export class MusicModule {}
 
