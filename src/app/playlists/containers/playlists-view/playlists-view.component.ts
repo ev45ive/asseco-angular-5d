@@ -17,7 +17,25 @@ export class PlaylistsViewComponent {
 
   selectPlaylistById(id: string) {
     this.selectedId = id;
-    this.selected = this.playlistsData.find((p) => p.id === id)!;
+    // const selected = this.playlistsData.find((p) => p.id === id) as any // !!!
+    // selected.get.me.a.million.dollars.now(id)
+
+    // const selected = this.playlistsData.find((p) => p.id === id) as Playlist // cast 
+    // const selected = this.playlistsData.find((p) => p.id === id)! // non-null assertion
+
+    const selected = this.playlistsData.find((p) => p.id === id);
+
+    // Type-Narrowing
+    if (selected !== undefined) { // nullcheck
+      this.selected = selected; // Playlist | undefined
+    }
+    else if (selected === undefined) {
+      selected; // undefined
+    } 
+    else {
+      selected satisfies never; // never
+      throw new Error('Unsuported playlist type')
+    }
   }
 
   showDetails() {
@@ -27,7 +45,7 @@ export class PlaylistsViewComponent {
   showEditor() {
     this.mode = 'editor';
   }
-  
+
   showCreator() {
     this.mode = 'creator';
   }

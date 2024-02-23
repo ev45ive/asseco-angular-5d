@@ -12,8 +12,8 @@ import { Playlist } from './Playlist';
   changeDetection: ChangeDetectionStrategy.OnPush 
 })
 export class PlaylistListComponent {
-  // oldValue === newValue
-
+  
+  // oldValue === newValue? noop : rerender!
   @Input({ alias: 'items', required: true })
   playlists: Playlist[] = [];
   
