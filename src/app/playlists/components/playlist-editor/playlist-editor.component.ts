@@ -1,20 +1,19 @@
 import {
-  AfterViewInit,
   Component,
-  DoCheck,
-  ElementRef,
   EventEmitter,
   Input,
-  OnDestroy,
-  OnInit,
   Output,
-  SimpleChanges,
   ViewChild,
 } from '@angular/core';
 import { Playlist } from '../playlist-list/Playlist';
 import { NgForm, NgModel } from '@angular/forms';
 
-NgModel;
+const EMPTY_PLAYLIST = {
+  id: '',
+  name: '',
+  public: false,
+  description: '',
+};
 
 @Component({
   selector: 'app-playlist-editor',
@@ -23,7 +22,7 @@ NgModel;
   // changeDetection: ChangeDetectionStrategy.OnPush // ☊ d[-_-]b
 })
 export class PlaylistEditorComponent {
-  @Input({ required: true }) playlist!: Playlist;
+  @Input() playlist?: Playlist = EMPTY_PLAYLIST;
 
   @Output() cancel = new EventEmitter<void>();
   @Output() save = new EventEmitter<Playlist>();
@@ -36,8 +35,8 @@ export class PlaylistEditorComponent {
     const draft = {
       // id: this.playlist.id,
       ...this.playlist,
-      ...this.formRef?.value
-    }
+      ...this.formRef?.value,
+    };
 
     this.save.emit(draft);
   }
@@ -48,7 +47,6 @@ export class PlaylistEditorComponent {
   @ViewChild('playlistNameModelRef', { read: NgModel })
   playlistNameModelRef?: NgModel;
 }
-
 
 // ng.getDirectives($('form'))
 // ng.getDirectives($('ngModel'))

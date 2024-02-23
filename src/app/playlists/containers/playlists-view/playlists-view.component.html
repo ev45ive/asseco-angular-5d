@@ -6,20 +6,27 @@
       [items]="playlistsData"
       (selectedIdChange)="selectPlaylistById($event)"
     />
+
+    <button class="btn btn-primary float-end mt-5">Create New</button>
   </div>
   <div class="col">
     @if (mode === "details") {
       <app-playlist-detail [playlist]="selected" (edit)="showEditor()" />
     }
 
-    @if (selected) {
-      @if (mode === "editor") {
-        <app-playlist-editor
-          [playlist]="selected"
-          (cancel)="showDetails()"
-          (save)="savePlaylist($event)"
-        />
-      }
+    @if (mode === "editor") {
+      <app-playlist-editor
+        [playlist]="selected"
+        (cancel)="showDetails()"
+        (save)="savePlaylist($event)"
+      />
+    }
+
+    @if (mode === "creator") {
+      <app-playlist-editor
+        (cancel)="showDetails()"
+        (save)="savePlaylist($event)"
+      />
     }
   </div>
 </div>

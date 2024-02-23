@@ -9,7 +9,7 @@ import { PlaylistEditorComponent } from '../../components/playlist-editor/playli
   styleUrl: './playlists-view.component.scss',
 })
 export class PlaylistsViewComponent {
-  mode: 'details' | 'editor' | 'creator' = 'details';
+  mode: 'details' | 'editor' | 'creator' = 'creator';
 
   playlistsData = mockPlaylists;
   // selected: Playlist | undefined = mockPlaylists[0];
