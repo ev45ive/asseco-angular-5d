@@ -9,7 +9,7 @@ import { PlaylistEditorComponent } from '../../components/playlist-editor/playli
   styleUrl: './playlists-view.component.scss',
 })
 export class PlaylistsViewComponent {
-  mode: 'details' | 'editor' = 'details';
+  mode: 'details' | 'editor' | 'creator' = 'details';
 
   playlistsData = mockPlaylists;
   selected = mockPlaylists[0];
@@ -27,21 +27,22 @@ export class PlaylistsViewComponent {
   showEditor() {
     this.mode = 'editor';
   }
+  
+  showCreator() {
+    this.mode = 'creator';
+  }
+
+  createPlaylist(draft: Playlist) {
+    console.log('Adding new playlist...', draft);
+    draft.id = crypto.randomUUID();
+  }
 
   savePlaylist(draft: Playlist) {
     console.log('Saving...', draft);
     this.selected = draft;
-
-    // const index = this.playlistsData.findIndex((p) => p.id === draft.id);
-    // this.playlistsData.splice(index, 1, draft);
-
-    // // Defensive copy! fake Immutable!
-    // this.playlistsData = [...this.playlistsData]
-
     this.playlistsData = this.playlistsData.map((p) =>
       p.id === draft.id ? draft : p,
     );
-
     this.showDetails();
   }
 
