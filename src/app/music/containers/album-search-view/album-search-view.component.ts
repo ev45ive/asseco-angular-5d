@@ -14,13 +14,14 @@ import { Album } from '../../../core/model/Album';
 export class AlbumSearchViewComponent {
   api = inject(MusicAPIService);
   results: Album[] = [];
+  message = ''
 
   searchAlbums(query = '') {
-    this.results = this.api.search(query);
+
+    this.api.search(query).subscribe({
+      next: (res) => (this.results = res),
+      error: (error) => this.message = (error.error.error.message),
+      // complete: () => console.log('complete'),
+    });
   }
-  
-  // ngOnInit(): void {
-  //   // FIXME: To tylko na chfile!
-  //   this.searchAlbums('batman');
-  // }
 }

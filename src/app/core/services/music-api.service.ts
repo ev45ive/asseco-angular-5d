@@ -15,31 +15,12 @@ export class MusicAPIService {
   search(query = '') {
     console.log('Searching.... ', this.api_url, query);
 
-    // Unicast Observable - stateless RECIPE
-    const obs: Observable<AlbumResponse[]> = this.http.get<AlbumResponse[]>(
-      this.api_url + 'search',
-      {
-        headers: {
-          // auth
-        },
-        params: {
-          query,
-          type: 'album',
-        },
-        // reportProgress: true -- stream of events, next.. next.. complete!
+    return this.http.get<AlbumResponse[]>(this.api_url + 'search', {
+      headers: {},
+      params: {
+        query,
+        type: 'album',
       },
-    );
-
-    // Start Cooking from Recipe!
-    const sub: Subscription = obs.subscribe(console.log);
-    sub.unsubscribe();
-
-    obs.subscribe({
-      next: (res) => console.log(res),
-      error: (error) => console.log(error),
-      complete: () => console.log('complete'), /// ??
     });
-
-    return mockAlbums;
   }
 }

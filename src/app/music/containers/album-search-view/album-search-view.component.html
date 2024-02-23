@@ -6,6 +6,9 @@
 </div>
 <div class="row">
   <div class="col">
+    @if (message) {
+      <div class="alert alert-danger my-2">{{ message }}</div>
+    }
     <app-results-grid [results]="results" />
   </div>
 </div>
