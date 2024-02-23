@@ -8,6 +8,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
+import { environment } from '../environments/environment';
+import { API_URL } from './core/tokens';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,16 @@ import { CoreModule } from './core/core.module';
     SharedModule,
     CoreModule
   ],
-  providers: [provideClientHydration()],
+  providers: [
+    provideClientHydration(),
+    
+    // Override:
+    // {
+    //   provide: API_URL,
+    //   useValue: 'http://demoapi.local/',
+    // },
+  
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule{}

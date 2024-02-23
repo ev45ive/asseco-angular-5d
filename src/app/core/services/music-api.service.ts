@@ -13,7 +13,7 @@ export class MusicAPIService {
   api_url = inject(API_URL);
 
   search(query = '') {
-    console.log('Searching.... ', query);
+    console.log('Searching.... ', this.api_url, query);
 
     return mockAlbums;
   }
