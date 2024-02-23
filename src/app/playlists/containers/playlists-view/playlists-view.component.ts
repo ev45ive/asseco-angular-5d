@@ -36,14 +36,7 @@ export class PlaylistsViewComponent {
   createPlaylist(draft: Playlist) {
     console.log('Adding new playlist...', draft);
     draft.id = crypto.randomUUID();
-
-    // this.playlistsData = [...this.playlistsData]; // Defensive copy
-    // this.playlistsData.push(draft); // Mutation!!!
-
-    // this.playlistsData = this.playlistsData.concat(draft) // Immutable
-
-    this.playlistsData = [...this.playlistsData, draft] // Immutable
-
+    this.playlistsData = [...this.playlistsData, draft];
     this.selected = draft;
     this.showDetails();
   }

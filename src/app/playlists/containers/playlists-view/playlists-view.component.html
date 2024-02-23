@@ -4,11 +4,15 @@
   <div class="col">
     <app-playlist-list
       [items]="playlistsData"
+      [selectedId]="selectedId"
       (selectedIdChange)="selectPlaylistById($event)"
     />
 
-    <button class="btn btn-primary float-end mt-5" (click)="showCreator()">Create New</button>
+    <button class="btn btn-primary float-end mt-5" (click)="showCreator()">
+      Create New
+    </button>
   </div>
+  
   <div class="col">
     @if (mode === "details") {
       <app-playlist-detail [playlist]="selected" (edit)="showEditor()" />
