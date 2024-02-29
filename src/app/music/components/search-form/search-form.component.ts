@@ -15,7 +15,7 @@ import {
 } from '@angular/forms';
 import { NgFor, NgIf } from '@angular/common';
 import { SharedModule } from '../../../shared/shared.module';
-import { debounceTime, distinctUntilChanged, filter } from 'rxjs';
+import { Observable, debounceTime, distinctUntilChanged, filter } from 'rxjs';
 
 @Component({
   selector: 'app-search-form',
@@ -29,13 +29,35 @@ export class SearchFormComponent {
 
   badword = 'batman';
 
-  censor = (control: AbstractControl<any, any>): ValidationErrors | null => {
-    if (this.badword && String(control.value).includes(this.badword)) {
-      return {
-        censor: { badword: this.badword },
-      };
-    }
-    return null;
+  censor = (
+    control: AbstractControl<any, any>,
+  ): Observable<ValidationErrors | null> => {
+    // reutrn this.http.get(validation)
+
+    // Unicast Observable - lazy constructor as argument
+    const obs = new Observable<ValidationErrors | null>((observer) => {
+      console.log('Subscribed');
+      setTimeout(() => {
+        observer.error;
+        observer.complete;
+
+        console.log('Next');
+        if (this.badword && String(control.value).includes(this.badword)) {
+          observer.next({
+            censor: { badword: this.badword },
+          });
+        }
+        observer.next(null);
+      }, 1500);
+    });
+
+    // obs.subscribe({
+    //   next: console.log,
+    //   error: console.log,
+    //   complete: console.log,
+    // });
+
+    return obs; // FormControl subscribes it!
   };
 
   query = '';
@@ -77,7 +99,8 @@ export class SearchFormComponent {
     const _ = this.builder;
     return _.group({
       query: _.control('', {
-        validators: [Validators.required, Validators.minLength(3), this.censor],
+        validators: [Validators.required, Validators.minLength(3)],
+        asyncValidators: [this.censor],
       }),
       advanced: _.group({
         type: ['album'],
