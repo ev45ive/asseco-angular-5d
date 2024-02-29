@@ -5,6 +5,7 @@ import { ClockComponent } from './components/clock/clock.component';
 import { FormsModule } from '@angular/forms';
 import { NavigationComponent } from './layout/navigation/navigation.component';
 import { CensorDirective } from './directives/censor.directive';
+import { ContenteditableDirective } from './accesors/contenteditable.directive';
 
 @NgModule({
   declarations: [
@@ -13,8 +14,14 @@ import { CensorDirective } from './directives/censor.directive';
     NavigationComponent,
     CensorDirective,
   ],
-  imports: [CommonModule, NgOptimizedImage, FormsModule],
+  imports: [
+    ContenteditableDirective,
+    CommonModule, 
+    NgOptimizedImage, 
+    FormsModule
+  ],
   exports: [
+    ContenteditableDirective,
     NgOptimizedImage,
     FormsModule,
     CommonModule,

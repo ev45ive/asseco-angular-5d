@@ -51,7 +51,19 @@
     <label class="form-check-label" for="playlist_public"> Public </label>
   </div>
 
+  <!-- Error: NG01203: No value accessor for form control name: 'description'. Find more at https://angular.io/errors/NG01203 -->
+
   <div class="mb-3">
+    <label for="playlist_description" class="form-label">Description</label>
+    <div
+      class="form-control"
+      id="playlist_description"
+      contenteditable="true"
+      [ngModel]="playlist.description"
+      name="description"
+    ></div>
+  </div>
+  <!-- <div class="mb-3">
     <label for="playlist_description" class="form-label">Description</label>
     <textarea
       class="form-control"
@@ -60,7 +72,7 @@
       [ngModel]="playlist.description"
       name="description"
     ></textarea>
-  </div>
+  </div> -->
 
   <button class="btn btn-danger" (click)="cancel.emit()">Cancel</button>
   <button class="btn btn-success" type="submit">Save</button>
