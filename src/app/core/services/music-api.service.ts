@@ -16,6 +16,7 @@ export class MusicAPIService {
           query,
           type: 'album',
         },
+        // transferCache:{} // SSR Data transfer
       })
       .pipe(map((res) => res.albums.items));
   }

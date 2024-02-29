@@ -21,6 +21,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   });
   return next(req);
 };
+
 // NgModule
 export class AuthInterceptor implements HttpInterceptor {
   oauth = inject(OAuthService);
