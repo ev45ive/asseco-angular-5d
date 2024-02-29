@@ -20,73 +20,19 @@ import {
 import { OAuthService } from 'angular-oauth2-oidc';
 import { time } from 'console';
 
-export const exponentialBackoffRetry = <T>(maxRetries = 3) =>
-  pipe<Observable<T>, Observable<T>>(
-    // map(), costam(),
-    retry({
-      delay(error: unknown, retryCount) {
-        const RETRY_STATUS_CODES = [408, 413, 429, 500, 502, 503, 504, 0];
-
-        if (
-          error instanceof HttpErrorResponse &&
-          RETRY_STATUS_CODES.includes(error.status) &&
-          retryCount <= maxRetries
-        )
-          return timer(500 * retryCount ** 2);
-
-        return throwError(() => error);
-      },
-    }),
-  );
-
 @Injectable({
   providedIn: 'root',
 })
 export class MusicAPIService {
-  api_url = inject(API_URL);
   http = inject(HttpClient);
-  oauth = inject(OAuthService);
-  // TODO: OpenTelemetry - Sentry, Grafana, Splunk, DataDog?
-  errorHandler = inject(ErrorHandler);
 
   search(query = '') {
-    console.log('Searching.... ', this.api_url, query);
-
-    return this.http
-      .get<AlbumSearchResponse>(this.api_url + 'search', {
-         params: {
+    return this.http.get<AlbumSearchResponse>('search', {
+        params: {
           query,
           type: 'album',
         },
       })
-      .pipe(
-        map((res) => res.albums.items),
-        exponentialBackoffRetry(3),
-        catchError((error, catchedObservable) => {
-          this.errorHandler.handleError(error);
-
-          if (!(error instanceof HttpErrorResponse))
-            return throwError(() => new Error('Unexpected error'));
-
-          if (!error.status)
-            // TODO: Retry when connection returns
-            return throwError(() => new Error('No internet connection'));
-
-          // TODO:
-          // navigator.connection.addEventListener('change',console.log)
-
-          return throwError(() => new Error(error.error.error.message));
-        }),
-      );
+      .pipe(map((res) => res.albums.items));
   }
 }
-
-// try{
-//   czasemDziala()
-// }
-// catch(e){
-//   Logger.log(e)
-//   sprobujponownie()
-//   wyswietlkomunikat()
-//   etc()
-// }
