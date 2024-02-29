@@ -7,9 +7,14 @@ import { Observable, Subscription } from 'rxjs';
 import { OAuthService } from 'angular-oauth2-oidc';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root', // Top-Level-Singleton
+  // providedIn: 'any',
+  // providedIn: MusicModule
 })
 export class MusicAPIService {
+  setAPIURL(url: string) {
+    throw new Error('Method not implemented.');
+  }
   api_url = inject(API_URL);
   http = inject(HttpClient);
   oauth = inject(OAuthService);
@@ -19,7 +24,7 @@ export class MusicAPIService {
 
     return this.http.get<AlbumSearchResponse>(this.api_url + 'search', {
       headers: {
-        Authorization: `Bearer ${this.oauth.getAccessToken()}`
+        Authorization: `Bearer ${this.oauth.getAccessToken()}`,
       },
       params: {
         query,
