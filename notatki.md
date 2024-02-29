@@ -156,5 +156,9 @@ ng g m core -m app
 ng g s core/services/MusicAPI
 
 
-
+## RxJS marble diagrams
+- https://rxmarbles.com/
+- https://rxjs.dev/guide/operators#categories-of-operators
+- https://rxviz.com/
+- https://www.learnrxjs.io/
 

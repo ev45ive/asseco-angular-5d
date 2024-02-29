@@ -18,9 +18,17 @@ export class AlbumSearchViewComponent {
 
   searchAlbums(query = '') {
     this.api.search(query).subscribe({
-      next: (res) => (this.results = res.albums.items),
-      error: (error) => (this.message = error.error.error.message),
-      // complete: () => console.log('complete'),
+      next: (res) => (this.results = res.albums.items),               // --O>
+      error: (error) => (this.message = error.error.error.message),   // --X>
+      complete: () => console.log('complete'),                        // --|>
     });
+
+    // ^------O|>
+    // ^---A---B---C---O|>
+    // ^------X>
+
+    // -----a----b-----c------d>
+    //         ^-b-----c-|>
+    //    ^-a----b-|>
   }
 }
