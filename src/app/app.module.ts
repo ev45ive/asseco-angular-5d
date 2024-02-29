@@ -8,13 +8,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
-import { HttpClientModule } from '@angular/common/http';
+import {
+  HttpClientModule,
+  provideHttpClient,
+  withInterceptors,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
 import { OAuthModule } from 'angular-oauth2-oidc';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    HttpClientModule,
+    // HttpClientModule, // replace provideHttpClient(...)
     BrowserModule,
     AppRoutingModule,
     SharedModule,
@@ -25,11 +30,10 @@ import { OAuthModule } from 'angular-oauth2-oidc';
   providers: [
     provideClientHydration(),
 
-    // Override:
-    // {
-    //   provide: API_URL,
-    //   useValue: 'http://demoapi.local/',
-    // },
+    provideHttpClient(
+      withInterceptors([]),
+      withInterceptorsFromDi(), // use HTTP_INTERCEPTORS
+    ),
   ],
   bootstrap: [AppComponent],
 })
