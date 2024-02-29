@@ -33,6 +33,8 @@ export class PlaylistEditorComponent {
 
   submit() {
     this.formRef?.form.markAllAsTouched();
+    this.formRef?.form.disable();
+
     if (this.formRef?.invalid) return;
 
     const draft = {
@@ -43,7 +45,9 @@ export class PlaylistEditorComponent {
 
     // this.formRef?.resetForm()
 
-    this.save.emit(draft);
+    setTimeout(() => {
+      this.save.emit(draft);
+    }, 1500);
   }
 
   @ViewChild('formRef', { read: NgForm })
