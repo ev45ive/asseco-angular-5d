@@ -22,13 +22,5 @@ export class AlbumSearchViewComponent {
       error: (error) => (this.message = error.error.error.message),   // --X>
       complete: () => console.log('complete'),                        // --|>
     });
-
-    // ^------O|>
-    // ^---A---B---C---O|>
-    // ^------X>
-
-    // -----a----b-----c------d>
-    //         ^-b-----c-|>
-    //    ^-a----b-|>
   }
 }
