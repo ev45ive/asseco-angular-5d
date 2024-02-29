@@ -32,37 +32,19 @@ export class SearchFormComponent {
   censor = (
     control: AbstractControl<any, any>,
   ): Observable<ValidationErrors | null> => {
-    // reutrn this.http.get(validation)
-
-    // Unicast Observable - lazy constructor as argument
-    const obs = new Observable<ValidationErrors | null>((observer) => {
-      console.log('Subscribed');
+    return new Observable<ValidationErrors | null>((observer) => {
       const handler = setTimeout(() => {
-        console.log('Next');
         if (this.badword && String(control.value).includes(this.badword)) {
           observer.next({
             censor: { badword: this.badword },
           });
         } else observer.next(null);
 
-        // observer.error;
-        observer.complete(); // stop pending!
+        observer.complete();
       }, 1500);
 
-      return () => {
-        clearTimeout(handler);
-        console.log('Un - Subscribed');
-      };
+      return () => clearTimeout(handler);
     });
-
-    // obs.subscribe({
-    //   next: console.log,
-    //   error: console.log,
-    //   complete: console.log,
-    // })
-    // .unsubscribe()
-
-    return obs; // FormControl subscribes it!
   };
 
   query = '';
