@@ -9,10 +9,11 @@
 
     <button class="btn btn-outline-secondary" type="submit">Search</button>
   </div>
-  <a class="float-end">Show Advanced</a>
+  <div class="ms-auto" (click)="showAdvanced = !showAdvanced">Show Advanced</div>
 
-  <div *ngIf="showAdvanced" class="row">
+  <div *ngIf="showAdvanced" class="row" formGroupName="advanced">
     <div class="col">
+      <span>Type:</span>
       <select formControlName="type" class="form-control">
         <option value="album">Album</option>
         <option value="artist">Artist</option>
@@ -21,10 +22,17 @@
 
     <div class="col">
       <div class="list-group">
-        <div class="list-group-item">
+        <div
+          class="list-group-item"
+          *ngFor="let market of markets.controls"
+          [formGroup]="market"
+        >
           <input type="text" formControlName="code" class="form-control" />
         </div>
+        <div
+        class="list-group-item" (click)="addMarket()">+ Add market</div>
       </div>
     </div>
   </div>
+  <pre>  {{ searchForm.value | json }}</pre>
 </form>

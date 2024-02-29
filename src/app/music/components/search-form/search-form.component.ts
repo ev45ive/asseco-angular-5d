@@ -8,12 +8,13 @@ import {
   NgModel,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { NgIf } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
+import { SharedModule } from '../../../shared/shared.module';
 
 @Component({
   selector: 'app-search-form',
   standalone: true,
-  imports: [FormsModule, NgIf, ReactiveFormsModule],
+  imports: [FormsModule, SharedModule, ReactiveFormsModule],
   templateUrl: './search-form.component.html',
   styleUrl: './search-form.component.scss',
 })
@@ -35,7 +36,19 @@ export class SearchFormComponent {
     }),
   });
 
-  markets = this.searchForm.get(['advanced', 'markets']);
+  markets = this.searchForm.get(['advanced', 'markets']) as FormArray<
+    FormGroup<{
+      code: FormControl<string | null>;
+    }>
+  >;
+  
+  addMarket() {
+    this.markets.push(
+      new FormGroup({
+        code: new FormControl(''),
+      }),
+    );
+  }
 
   submit() {
     this.search.emit(this.query);
