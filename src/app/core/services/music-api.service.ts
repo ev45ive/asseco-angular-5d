@@ -54,10 +54,7 @@ export class MusicAPIService {
 
     return this.http
       .get<AlbumSearchResponse>(this.api_url + 'search', {
-        headers: {
-          Authorization: `Bearer ${this.oauth.getAccessToken()}`,
-        },
-        params: {
+         params: {
           query,
           type: 'album',
         },
