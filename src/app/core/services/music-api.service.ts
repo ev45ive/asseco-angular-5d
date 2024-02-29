@@ -68,6 +68,9 @@ export class MusicAPIService {
             // TODO: Retry when connection returns
             return throwError(() => new Error('No internet connection'));
 
+          // TODO: 
+          // navigator.connection.addEventListener('change',console.log)
+
           return throwError(() => new Error(error.error.error.message));
         }),
       );
