@@ -4,7 +4,8 @@
   <div class="col">
     <app-playlist-list
       [items]="playlistsData"
-      [selectedId]="selectedId"
+      
+      [(selectedId)]="selectedId"
       (selectedIdChange)="selectPlaylistById($event)"
 
       #listRef
