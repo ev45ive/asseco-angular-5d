@@ -15,7 +15,14 @@ import {
 } from '@angular/forms';
 import { NgFor, NgIf } from '@angular/common';
 import { SharedModule } from '../../../shared/shared.module';
-import { Observable, debounceTime, distinctUntilChanged, filter } from 'rxjs';
+import {
+  Observable,
+  debounceTime,
+  distinctUntilChanged,
+  filter,
+  map,
+  withLatestFrom,
+} from 'rxjs';
 
 @Component({
   selector: 'app-search-form',
@@ -58,21 +65,19 @@ export class SearchFormComponent {
   constructor() {
     const field = this.searchForm.get('query')!;
     const valueChanges = field.valueChanges;
+    const statusChanges = field.statusChanges;
 
-    // this.searchForm.value.advanced?.markets?.[0]?.code // Strong Types!
-
-    const searchChanges = valueChanges.pipe(
-      // wait for 500ms silence
-      debounceTime(500),
-
-      // minimum 3 characters length
-      filter((q) => q.length >= 3),
-
-      // no duplicates
-      distinctUntilChanged(/* (a, b) => a == b */),
+    const validValues = statusChanges.pipe(
+      withLatestFrom(valueChanges),
+      filter(([status, value]) => status === 'VALID'),
+      map(([status, value]) => value),
     );
 
-    // Multicast Subject Chaining:
+    const searchChanges = validValues.pipe(
+      debounceTime(500),
+      distinctUntilChanged(),
+    );
+
     searchChanges.subscribe(this.search);
   }
 
