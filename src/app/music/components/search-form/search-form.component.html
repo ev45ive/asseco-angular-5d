@@ -9,21 +9,26 @@
 
     <button class="btn btn-outline-secondary" type="submit">Search</button>
   </div>
-  <div class="ms-auto" (click)="showAdvanced = !showAdvanced">Show Advanced</div>
+  <div class="ms-auto" (click)="showAdvanced = !showAdvanced">
+    Show Advanced
+  </div>
 
-  @if (searchForm.get('query')?.touched || searchForm.get('query')?.dirty) {
-    @if (searchForm.get('query')?.hasError("required")) {
-      <span class="text-danger">Name is required</span>
-    }
+  <!-- <div *ngIf="searchForm.get("query") as field">  -->
+  @if (searchForm.get("query"); as field) {
+    @if (field.touched || field.dirty) {
+      @if (field.hasError("required")) {
+        <span class="text-danger">Name is required</span>
+      }
 
-    @if (searchForm.get('query')?.getError("minlength"); as error) {
-      <span
-        >Name should have at least {{ error.requiredLength }} characters</span
-      >
-    }
+      @if (field.getError("minlength"); as error) {
+        <span
+          >Name should have at least {{ error.requiredLength }} characters</span
+        >
+      }
 
-    @if (searchForm.get('query')?.getError("censor"); as error) {
-      <span>Name cant have "{{ error.badword }}" word</span>
+      @if (field.getError("censor"); as error) {
+        <span>Name cant have "{{ error.badword }}" word</span>
+      }
     }
   }
 
@@ -45,8 +50,7 @@
         >
           <input type="text" formControlName="code" class="form-control" />
         </div>
-        <div
-        class="list-group-item" (click)="addMarket()">+ Add market</div>
+        <div class="list-group-item" (click)="addMarket()">+ Add market</div>
       </div>
     </div>
   </div>
