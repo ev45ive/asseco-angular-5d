@@ -36,6 +36,8 @@ export class SearchFormComponent {
     const field = this.searchForm.get('query')!;
     const valueChanges = field.valueChanges;
 
+    // this.searchForm.value.advanced?.markets?.[0]?.code // Strong Types!
+
     const searchChanges = valueChanges.pipe(
       // wait for 500ms silence
       debounceTime(500),
