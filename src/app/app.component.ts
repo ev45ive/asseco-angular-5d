@@ -1,6 +1,7 @@
-import { Component, inject } from '@angular/core';
+import { Component, PLATFORM_ID, inject } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { environment } from '../environments/environment';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-root, .placki[sos=malinowy]',
@@ -18,14 +19,18 @@ export class AppComponent {
   title = 'asseco';
 
   oauth = inject(OAuthService);
+  platformId = inject(PLATFORM_ID);
 
   ngOnInit(): void {
-    this.oauth.configure(environment.authConfig);
-    this.oauth.tryLogin();
+    
+    if (isPlatformBrowser(this.platformId)) {
+      this.oauth.configure(environment.authConfig);
+      this.oauth.tryLogin();
+    }
   }
 
   login() {
-    this.oauth.initImplicitFlow() // TODO: popup!
+    this.oauth.initImplicitFlow(); // TODO: popup!
   }
 }
 
