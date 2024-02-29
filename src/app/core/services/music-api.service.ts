@@ -49,8 +49,8 @@ export class MusicAPIService {
             const RETRY_STATUS_CODES = [408, 413, 429, 500, 502, 503, 504, 0];
 
             if (
-              !(error instanceof HttpErrorResponse) ||
-              !RETRY_STATUS_CODES.includes(error.status) ||
+              error instanceof HttpErrorResponse &&
+              RETRY_STATUS_CODES.includes(error.status) &&
               retryCount <= 3
             )
               return timer(500 * retryCount ** 2);
@@ -64,7 +64,8 @@ export class MusicAPIService {
           if (!(error instanceof HttpErrorResponse))
             return throwError(() => new Error('Unexpected error'));
 
-          if (!error.status) // TODO: Retry when connection returns
+          if (!error.status)
+            // TODO: Retry when connection returns
             return throwError(() => new Error('No internet connection'));
 
           return throwError(() => new Error(error.error.error.message));
