@@ -161,4 +161,4 @@ ng g s core/services/MusicAPI
 - https://rxjs.dev/guide/operators#categories-of-operators
 - https://rxviz.com/
 - https://www.learnrxjs.io/
-
+- https://gist.github.com/staltz/868e7e9bc2a7b8c1f754
