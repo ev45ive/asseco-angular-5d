@@ -1,5 +1,5 @@
 <form (submit)="submit()" [formGroup]="searchForm">
-  <div class="input-group mb-3">
+  <div class="input-group">
     <input
       type="text"
       formControlName="query"
@@ -9,30 +9,33 @@
 
     <button class="btn btn-outline-secondary" type="submit">Search</button>
   </div>
-  <div class="ms-auto" (click)="showAdvanced = !showAdvanced">
-    Show Advanced
-  </div>
 
   <!-- <div *ngIf="searchForm.get("query") as field">  -->
   @if (searchForm.get("query"); as field) {
     @if (field.touched || field.dirty) {
       @if (field.hasError("required")) {
-        <span class="text-danger">Name is required</span>
+        <span class="text-danger">Query is required</span>
       }
 
       @if (field.getError("minlength"); as error) {
         <span
-          >Name should have at least {{ error.requiredLength }} characters</span
+          >Query should have at least {{ error.requiredLength }} characters</span
         >
       }
 
       @if (field.getError("censor"); as error) {
-        <span>Name cant have "{{ error.badword }}" word</span>
+        <span>Query cant have "{{ error.badword }}" word</span>
       }
     }
   }
+  
+  <div class="float-end" (click)="showAdvanced = !showAdvanced">
+    Show Advanced
+  </div>
 
-  <div *ngIf="showAdvanced" class="row" formGroupName="advanced">
+  <div class="clearfix"></div>
+
+  <div *ngIf="showAdvanced" class="row  mt-3" formGroupName="advanced">
     <div class="col">
       <span>Type:</span>
       <select formControlName="type" class="form-control">
@@ -54,5 +57,5 @@
       </div>
     </div>
   </div>
-  <pre>  {{ searchForm.value | json }}</pre>
+  <!-- <pre>  {{ searchForm.value | json }}</pre> -->
 </form>

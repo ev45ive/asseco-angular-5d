@@ -2,7 +2,6 @@
 
 // @import "bootstrap/dist/css/bootstrap.css";
 
-
 // Design Tokens - Design System
 $primary: hotpink;
 $enable-rounded: false;
@@ -57,3 +56,20 @@ $enable-gradients: true;
 // Utilities
 @import "bootstrap/scss/utilities/api";
 // scss-docs-end import-stack
+
+form {
+  .ng-touched,
+  .ng-dirty {
+    &.ng-invalid {
+      color: red;
+    }
+    &.ng-valid {
+      color: green;
+    }
+  }
+}
+
+// .ng-touched.ng-invalid // AND
+// .ng-invalid, .ng-valid // OR
+
+// .ng-touched.ng-invalid, .ng-dirty.ng-valid

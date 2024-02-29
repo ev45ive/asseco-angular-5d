@@ -27,7 +27,14 @@ import { debounceTime, distinctUntilChanged, filter } from 'rxjs';
 export class SearchFormComponent {
   @Output() search = new EventEmitter<string>();
 
+  badword = 'batman';
+
   censor = (control: AbstractControl<any, any>): ValidationErrors | null => {
+    if (this.badword && String(control.value).includes(this.badword)) {
+      return {
+        censor: { badword: this.badword },
+      };
+    }
     return null;
   };
 
@@ -69,8 +76,8 @@ export class SearchFormComponent {
   private createForm() {
     const _ = this.builder;
     return _.group({
-      query: _.control('batman', {
-        validators: [Validators.required, Validators.minLength(3)],
+      query: _.control('', {
+        validators: [Validators.required, Validators.minLength(3), this.censor],
       }),
       advanced: _.group({
         type: ['album'],
