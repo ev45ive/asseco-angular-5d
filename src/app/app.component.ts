@@ -6,6 +6,13 @@ import { environment } from '../environments/environment';
   selector: 'app-root, .placki[sos=malinowy]',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
+
+  /* 
+  // Component takes over NgModule responsibility
+    standalone: true,
+    import:[CoreModule,AppRoutingModule, SharedModule],
+    providers:[provideClientHydration()]
+  */
 })
 export class AppComponent {
   title = 'asseco';
