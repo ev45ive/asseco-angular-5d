@@ -42,18 +42,27 @@ export class SearchFormComponent {
     const valueChanges = field.valueChanges;
 
     const searchChanges = valueChanges.pipe(
-      
       // wait for 500ms silence
       debounceTime(500),
-      
+
       // minimum 3 characters length
       filter((q) => q.length >= 3),
-      
+
       // no duplicates
       distinctUntilChanged(/* (a, b) => a == b */),
     );
 
-    searchChanges.subscribe(console.log);
+    // searchChanges.subscribe(console.log);
+    // searchChanges.subscribe(q => this.search.emit(q))
+    // searchChanges.subscribe(q => this.search.next(q))
+    // searchChanges.subscribe({
+    //   next: (q) => this.search.next(q),
+    //   error: (error) => this.search.error(error),
+    //   complete: () => this.search.complete(),
+    // });
+    
+    // Multicast Subject Chaining:
+    searchChanges.subscribe(this.search)
   }
 
   markets = this.searchForm.get(['advanced', 'markets']) as FormArray<
