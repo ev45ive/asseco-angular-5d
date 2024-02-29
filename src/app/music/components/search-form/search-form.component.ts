@@ -1,11 +1,13 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, inject } from '@angular/core';
 import { AlbumSearchViewComponent } from '../../containers/album-search-view/album-search-view.component';
 import {
   FormArray,
+  FormBuilder,
   FormControl,
   FormGroup,
   FormsModule,
   NgModel,
+  NonNullableFormBuilder,
   ReactiveFormsModule,
 } from '@angular/forms';
 import { NgFor, NgIf } from '@angular/common';
@@ -25,17 +27,10 @@ export class SearchFormComponent {
   query = '';
   showAdvanced = false;
 
-  searchForm = new FormGroup({
-    query: new FormControl('batman', { nonNullable: true }),
-    advanced: new FormGroup({
-      type: new FormControl('album'),
-      markets: new FormArray([
-        new FormGroup({
-          code: new FormControl('PL'),
-        }),
-      ]),
-    }),
-  });
+  // builder = inject(FormBuilder);
+  builder = inject(NonNullableFormBuilder);
+
+  searchForm = this.createForm();
 
   constructor() {
     const field = this.searchForm.get('query')!;
@@ -52,17 +47,8 @@ export class SearchFormComponent {
       distinctUntilChanged(/* (a, b) => a == b */),
     );
 
-    // searchChanges.subscribe(console.log);
-    // searchChanges.subscribe(q => this.search.emit(q))
-    // searchChanges.subscribe(q => this.search.next(q))
-    // searchChanges.subscribe({
-    //   next: (q) => this.search.next(q),
-    //   error: (error) => this.search.error(error),
-    //   complete: () => this.search.complete(),
-    // });
-    
     // Multicast Subject Chaining:
-    searchChanges.subscribe(this.search)
+    searchChanges.subscribe(this.search);
   }
 
   markets = this.searchForm.get(['advanced', 'markets']) as FormArray<
@@ -70,6 +56,21 @@ export class SearchFormComponent {
       code: FormControl<string | null>;
     }>
   >;
+
+  private createForm() {
+    const _ = this.builder;
+    return _.group({
+      query: _.control('batman'/* , { nonNullable: true } */),
+      advanced: _.group({
+        type: ['album'],
+        markets: _.array([
+          _.group({
+            code: ['PL'],
+          }),
+        ]),
+      }),
+    });
+  }
 
   addMarket() {
     this.markets.push(
