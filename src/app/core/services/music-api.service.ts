@@ -20,8 +20,8 @@ import {
 import { OAuthService } from 'angular-oauth2-oidc';
 import { time } from 'console';
 
-export const exponentialBackoffRetry = (maxRetries = 3) =>
-  pipe(
+export const exponentialBackoffRetry = <T>(maxRetries = 3) =>
+  pipe<Observable<T>, Observable<T>>(
     // map(), costam(),
     retry({
       delay(error: unknown, retryCount) {
