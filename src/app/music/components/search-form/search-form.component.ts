@@ -42,14 +42,15 @@ export class SearchFormComponent {
     const valueChanges = field.valueChanges;
 
     const searchChanges = valueChanges.pipe(
+      
+      // wait for 500ms silence
+      debounceTime(500),
+      
       // minimum 3 characters length
       filter((q) => q.length >= 3),
-
+      
       // no duplicates
       distinctUntilChanged(/* (a, b) => a == b */),
-
-      // wait for 500ms silence
-      debounceTime(500)
     );
 
     searchChanges.subscribe(console.log);
