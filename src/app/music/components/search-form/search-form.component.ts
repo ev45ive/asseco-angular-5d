@@ -25,7 +25,7 @@ export class SearchFormComponent {
   showAdvanced = false;
 
   searchForm = new FormGroup({
-    query: new FormControl('batman'),
+    query: new FormControl('batman', { nonNullable: true }),
     advanced: new FormGroup({
       type: new FormControl('album'),
       markets: new FormArray([
@@ -36,12 +36,27 @@ export class SearchFormComponent {
     }),
   });
 
+  constructor() {
+    const field = this.searchForm.get('query')!;
+    const valueChanges = field.valueChanges;
+
+    const searchChanges = valueChanges.pipe(
+      // minimum 3 characters length
+
+      // no duplicates
+
+      // wait for 500ms silence 
+    )
+
+    searchChanges.subscribe(console.log)
+  }
+
   markets = this.searchForm.get(['advanced', 'markets']) as FormArray<
     FormGroup<{
       code: FormControl<string | null>;
     }>
   >;
-  
+
   addMarket() {
     this.markets.push(
       new FormGroup({
