@@ -11,6 +11,7 @@ import {
   from,
   map,
   of,
+  pipe,
   retry,
   switchMap,
   throwError,
@@ -18,6 +19,25 @@ import {
 } from 'rxjs';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { time } from 'console';
+
+export const exponentialBackoffRetry = (maxRetries = 3) =>
+  pipe(
+    // map(), costam(),
+    retry({
+      delay(error: unknown, retryCount) {
+        const RETRY_STATUS_CODES = [408, 413, 429, 500, 502, 503, 504, 0];
+
+        if (
+          error instanceof HttpErrorResponse &&
+          RETRY_STATUS_CODES.includes(error.status) &&
+          retryCount <= maxRetries
+        )
+          return timer(500 * retryCount ** 2);
+
+        return throwError(() => error);
+      },
+    }),
+  );
 
 @Injectable({
   providedIn: 'root',
@@ -44,20 +64,7 @@ export class MusicAPIService {
       })
       .pipe(
         map((res) => res.albums.items),
-        retry({
-          delay(error: unknown, retryCount) {
-            const RETRY_STATUS_CODES = [408, 413, 429, 500, 502, 503, 504, 0];
-
-            if (
-              error instanceof HttpErrorResponse &&
-              RETRY_STATUS_CODES.includes(error.status) &&
-              retryCount <= 3
-            )
-              return timer(500 * retryCount ** 2);
-
-            return throwError(() => error);
-          },
-        }),
+        exponentialBackoffRetry(3),
         catchError((error, catchedObservable) => {
           this.errorHandler.handleError(error);
 
@@ -68,7 +75,7 @@ export class MusicAPIService {
             // TODO: Retry when connection returns
             return throwError(() => new Error('No internet connection'));
 
-          // TODO: 
+          // TODO:
           // navigator.connection.addEventListener('change',console.log)
 
           return throwError(() => new Error(error.error.error.message));
