@@ -1,14 +1,30 @@
-<form (submit)="submit()">
-
+<form (submit)="submit()" [formGroup]="searchForm">
   <div class="input-group mb-3">
     <input
       type="text"
-      [(ngModel)]="query"
-      name="query"
+      formControlName="query"
       class="form-control"
       placeholder="Search"
     />
 
     <button class="btn btn-outline-secondary" type="submit">Search</button>
+  </div>
+  <a class="float-end">Show Advanced</a>
+
+  <div *ngIf="showAdvanced" class="row">
+    <div class="col">
+      <select formControlName="type" class="form-control">
+        <option value="album">Album</option>
+        <option value="artist">Artist</option>
+      </select>
+    </div>
+
+    <div class="col">
+      <div class="list-group">
+        <div class="list-group-item">
+          <input type="text" formControlName="code" class="form-control" />
+        </div>
+      </div>
+    </div>
   </div>
 </form>
