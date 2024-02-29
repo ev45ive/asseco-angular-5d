@@ -6,7 +6,11 @@
       [items]="playlistsData"
       [selectedId]="selectedId"
       (selectedIdChange)="selectPlaylistById($event)"
+
+      #listRef
     />
+    <!-- {{ listRef.selectedIdChange.subscribe($event => selectPlaylistById($event)).unsubscribe()}} -->
+
 
     <button class="btn btn-primary float-end mt-5" (click)="showCreator()">
       Create New
