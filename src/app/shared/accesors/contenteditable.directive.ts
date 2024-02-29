@@ -2,7 +2,7 @@ import { Directive, ElementRef, ViewChild } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Directive({
-  selector: '[contenteditable][ngModel]', // Compile-time only / static
+  selector: '[contenteditable][ngModel], [formControl][ngModel]', // Compile-time only / static
   standalone: true, // I am NgModule! I go to imports!,
   providers: [
     {
