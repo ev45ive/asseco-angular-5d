@@ -3,7 +3,7 @@ import mockAlbums from '../mocks/mockAlbums';
 import { API_URL } from '../tokens';
 import { HttpClient } from '@angular/common/http';
 import { AlbumResponse, AlbumSearchResponse } from '../model/Album';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subscription, map, of } from 'rxjs';
 import { OAuthService } from 'angular-oauth2-oidc';
 
 @Injectable({
@@ -17,6 +17,9 @@ export class MusicAPIService {
   search(query = '') {
     console.log('Searching.... ', this.api_url, query);
 
+    // Mock Observable:
+    // return of({albums:{items: mockAlbums}})
+
     // RECIPE:
     return this.http.get<AlbumSearchResponse>(this.api_url + 'search', {
       headers: {
@@ -25,10 +28,10 @@ export class MusicAPIService {
       params: {
         query,
         type: 'album',
-      },
-      // reportProgress: true 
-    }).pipe(
-      // Krok wyciagnie z response same albumy
+      }, 
+    })
+    .pipe(
+      map(res => res.albums.items)
     )
   }
 }
