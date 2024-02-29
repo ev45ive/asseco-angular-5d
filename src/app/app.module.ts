@@ -15,6 +15,11 @@ import {
   withInterceptorsFromDi,
 } from '@angular/common/http';
 import { OAuthModule } from 'angular-oauth2-oidc';
+import {
+  URLInterceptor,
+  authInterceptor,
+  errorInterceptor,
+} from './core/interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -31,7 +36,7 @@ import { OAuthModule } from 'angular-oauth2-oidc';
     provideClientHydration(),
 
     provideHttpClient(
-      withInterceptors([]),
+      withInterceptors([URLInterceptor, errorInterceptor]),
       withInterceptorsFromDi(), // use HTTP_INTERCEPTORS
     ),
   ],
