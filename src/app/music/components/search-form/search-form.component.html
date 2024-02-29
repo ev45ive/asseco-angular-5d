@@ -11,6 +11,22 @@
   </div>
   <div class="ms-auto" (click)="showAdvanced = !showAdvanced">Show Advanced</div>
 
+  @if (searchForm.get('query')?.touched || searchForm.get('query')?.dirty) {
+    @if (searchForm.get('query')?.hasError("required")) {
+      <span class="text-danger">Name is required</span>
+    }
+
+    @if (searchForm.get('query')?.getError("minlength"); as error) {
+      <span
+        >Name should have at least {{ error.requiredLength }} characters</span
+      >
+    }
+
+    @if (searchForm.get('query')?.getError("censor"); as error) {
+      <span>Name cant have "{{ error.badword }}" word</span>
+    }
+  }
+
   <div *ngIf="showAdvanced" class="row" formGroupName="advanced">
     <div class="col">
       <span>Type:</span>

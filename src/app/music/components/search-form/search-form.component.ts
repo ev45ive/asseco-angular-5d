@@ -9,6 +9,7 @@ import {
   NgModel,
   NonNullableFormBuilder,
   ReactiveFormsModule,
+  Validators,
 } from '@angular/forms';
 import { NgFor, NgIf } from '@angular/common';
 import { SharedModule } from '../../../shared/shared.module';
@@ -62,7 +63,12 @@ export class SearchFormComponent {
   private createForm() {
     const _ = this.builder;
     return _.group({
-      query: _.control('batman'/* , { nonNullable: true } */),
+      query: _.control('batman',{
+        validators:[
+          Validators.required,
+          Validators.minLength(3),
+        ]
+      }),
       advanced: _.group({
         type: ['album'],
         markets: _.array([
