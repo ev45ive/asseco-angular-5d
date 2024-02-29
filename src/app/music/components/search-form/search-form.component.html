@@ -27,7 +27,11 @@
         <span>Query cant have "{{ error.badword }}" word</span>
       }
     }
+    <div class="text-info" *ngIf="field.pending">
+      Please wait...
+    </div>
   }
+  
   
   <div class="float-end" (click)="showAdvanced = !showAdvanced">
     Show Advanced

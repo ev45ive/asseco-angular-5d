@@ -37,25 +37,30 @@ export class SearchFormComponent {
     // Unicast Observable - lazy constructor as argument
     const obs = new Observable<ValidationErrors | null>((observer) => {
       console.log('Subscribed');
-      setTimeout(() => {
-        observer.error;
-        observer.complete;
-
+      const handler = setTimeout(() => {
         console.log('Next');
         if (this.badword && String(control.value).includes(this.badword)) {
           observer.next({
             censor: { badword: this.badword },
           });
-        }
-        observer.next(null);
+        } else observer.next(null);
+
+        // observer.error;
+        observer.complete(); // stop pending!
       }, 1500);
+
+      return () => {
+        clearTimeout(handler);
+        console.log('Un - Subscribed');
+      };
     });
 
     // obs.subscribe({
     //   next: console.log,
     //   error: console.log,
     //   complete: console.log,
-    // });
+    // })
+    // .unsubscribe()
 
     return obs; // FormControl subscribes it!
   };
