@@ -10,6 +10,7 @@ import {
 } from '@angular/forms';
 import { NgFor, NgIf } from '@angular/common';
 import { SharedModule } from '../../../shared/shared.module';
+import { debounceTime, distinctUntilChanged, filter } from 'rxjs';
 
 @Component({
   selector: 'app-search-form',
@@ -42,13 +43,16 @@ export class SearchFormComponent {
 
     const searchChanges = valueChanges.pipe(
       // minimum 3 characters length
+      filter((q) => q.length >= 3),
 
       // no duplicates
+      distinctUntilChanged(/* (a, b) => a == b */),
 
-      // wait for 500ms silence 
-    )
+      // wait for 500ms silence
+      debounceTime(500)
+    );
 
-    searchChanges.subscribe(console.log)
+    searchChanges.subscribe(console.log);
   }
 
   markets = this.searchForm.get(['advanced', 'markets']) as FormArray<
