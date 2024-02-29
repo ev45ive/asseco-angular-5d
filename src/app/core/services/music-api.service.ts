@@ -28,9 +28,7 @@ export class MusicAPIService {
       },
       // reportProgress: true 
     }).pipe(
-      // Krok 2
-      // Krok 3
-      // Krok 4
+      // Krok wyciagnie z response same albumy
     )
   }
 }
