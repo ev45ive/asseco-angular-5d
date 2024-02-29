@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output, inject } from '@angular/core';
 import { AlbumSearchViewComponent } from '../../containers/album-search-view/album-search-view.component';
 import {
+  AbstractControl,
   FormArray,
   FormBuilder,
   FormControl,
@@ -9,6 +10,7 @@ import {
   NgModel,
   NonNullableFormBuilder,
   ReactiveFormsModule,
+  ValidationErrors,
   Validators,
 } from '@angular/forms';
 import { NgFor, NgIf } from '@angular/common';
@@ -24,6 +26,10 @@ import { debounceTime, distinctUntilChanged, filter } from 'rxjs';
 })
 export class SearchFormComponent {
   @Output() search = new EventEmitter<string>();
+
+  censor = (control: AbstractControl<any, any>): ValidationErrors | null => {
+    return null;
+  };
 
   query = '';
   showAdvanced = false;
@@ -63,11 +69,8 @@ export class SearchFormComponent {
   private createForm() {
     const _ = this.builder;
     return _.group({
-      query: _.control('batman',{
-        validators:[
-          Validators.required,
-          Validators.minLength(3),
-        ]
+      query: _.control('batman', {
+        validators: [Validators.required, Validators.minLength(3)],
       }),
       advanced: _.group({
         type: ['album'],
