@@ -1,4 +1,10 @@
-import { Component, EventEmitter, PLATFORM_ID, inject } from '@angular/core';
+import {
+  Component,
+  DestroyRef,
+  EventEmitter,
+  PLATFORM_ID,
+  inject,
+} from '@angular/core';
 import { SearchFormComponent } from '../../components/search-form/search-form.component';
 import { ResultsGridComponent } from '../../components/results-grid/results-grid.component';
 import { MusicAPIService } from '../../../core/services/music-api.service';
@@ -39,6 +45,7 @@ export class AlbumSearchViewComponent {
   results: Album[] = [];
 
   onDestory$ = new Subject();
+  d = inject(DestroyRef).onDestroy(() => this.onDestory$.next(null));
 
   queryChanges = this.route.queryParamMap.pipe(
     takeUntil(this.onDestory$),
@@ -55,10 +62,6 @@ export class AlbumSearchViewComponent {
 
     this.queryChanges.subscribe((q) => (this.query = q));
     this.searchChanges.subscribe((albums) => (this.results = albums));
-  }
-
-  ngOnDestroy(): void {
-    this.onDestory$.next(null);
   }
 
   searchAlbums(query = '') {
