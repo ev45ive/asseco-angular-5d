@@ -55,8 +55,8 @@ export class SearchFormComponent {
   };
 
   @Input() set query(q: string | null) {
-    this.searchForm.get('query')?.setValue(q || '',{
-      // emitEvent: false 
+    this.searchForm.get('query')?.setValue(q || '', {
+      // emitEvent: false
     });
   }
 
@@ -92,20 +92,23 @@ export class SearchFormComponent {
 
   private createForm() {
     const _ = this.builder;
-    return _.group({
-      query: _.control('', {
-        validators: [Validators.required, Validators.minLength(3)],
-        asyncValidators: [this.censor],
-      }),
-      advanced: _.group({
-        type: ['album'],
-        markets: _.array([
-          _.group({
-            code: ['PL'],
-          }),
-        ]),
-      }),
-    });
+    return _.group(
+      {
+        query: _.control('', {
+          validators: [Validators.required, Validators.minLength(3)],
+          asyncValidators: [this.censor],
+        }),
+        advanced: _.group({
+          type: ['album'],
+          markets: _.array([
+            _.group({
+              code: ['PL'],
+            }),
+          ]),
+        }),
+      },
+      { validators: [/* validate whole form */] },
+    );
   }
 
   addMarket() {

@@ -1,35 +1,10 @@
-import {
-  Component,
-  DestroyRef,
-  EventEmitter,
-  OnDestroy,
-  PLATFORM_ID,
-  inject,
-} from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { SearchFormComponent } from '../../components/search-form/search-form.component';
 import { ResultsGridComponent } from '../../components/results-grid/results-grid.component';
 import { MusicAPIService } from '../../../core/services/music-api.service';
-import { Album, AlbumResponse } from '../../../core/model/Album';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AsyncPipe, NgIf, isPlatformServer } from '@angular/common';
-import {
-  EMPTY,
-  Observable,
-  Subject,
-  Subscription,
-  catchError,
-  concatMap,
-  filter,
-  map,
-  mergeAll,
-  mergeMap,
-  share,
-  switchMap,
-  takeUntil,
-  tap,
-} from 'rxjs';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { NotificationsService } from '../../../core/services/notifications.service';
+import { AsyncPipe, NgIf } from '@angular/common';
+import { filter, map, share, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-album-search-view',
