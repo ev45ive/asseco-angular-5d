@@ -1,5 +1,11 @@
 import { Inject, NgModule } from '@angular/core';
-import { ROUTES, RouterModule, Routes } from '@angular/router';
+import {
+  ROUTES,
+  RouterModule,
+  Routes,
+  provideRouter,
+  withComponentInputBinding,
+} from '@angular/router';
 
 const routes: Routes = [
   {
@@ -27,11 +33,12 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, {
-      // useHash: true, // useHistory pushState or Hash
-    }),
+    // RouterModule.forRoot(routes, {
+    //   // useHash: true, // useHistory pushState or Hash
+    // }),
   ],
   exports: [RouterModule],
+  providers: [provideRouter(routes)],
 })
 export class AppRoutingModule {
   // constructor(@Inject(ROUTES) private routes: Routes[]) {}

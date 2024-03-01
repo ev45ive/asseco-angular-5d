@@ -4,11 +4,14 @@ import {
   RouterModule,
   RouterStateSnapshot,
   Routes,
+  provideRouter,
+  withComponentInputBinding,
 } from '@angular/router';
 import { MusicComponent } from './music.component';
 import { AlbumSearchViewComponent } from './containers/album-search-view/album-search-view.component';
 import { AlbumDetailViewComponent } from './containers/album-detail-view/album-detail-view.component';
 import { MusicAPIService } from '../core/services/music-api.service';
+import { withRequestsMadeViaParent } from '@angular/common/http';
 
 export const resolveAlbum = (
   route: ActivatedRouteSnapshot,
