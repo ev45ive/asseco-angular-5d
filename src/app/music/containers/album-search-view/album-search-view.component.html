@@ -1,17 +1,25 @@
 <!-- .row*2>.col -->
 <div class="row">
   <div class="col">
-    <app-search-form [query]="queryChanges | async" (search)="searchAlbums($event)" />
+    <app-search-form
+      [query]="queryChanges | async"
+      (search)="searchAlbums($event)"
+    />
   </div>
 </div>
 <div class="row">
   <div class="col">
 
-    <ng-container *ngIf="searchChanges | async as results">
+    <!-- <ng-container *ngIf="pokazNaŻądanie"> -->
       
-      <p>Found {{results.length}} results</p>
+    <!-- <ng-container *ngIf="searchChanges | async let results = $implicit"> -->
+    <ng-container *ngIf="searchChanges | async as results">
+
+      <p>Found {{ results.length }} results</p>
       <app-results-grid [results]="results" />
+
     </ng-container>
-    
+
+    <!-- </ng-container> -->
   </div>
 </div>
