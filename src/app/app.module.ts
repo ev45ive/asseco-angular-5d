@@ -21,28 +21,28 @@ import {
   authInterceptor,
   errorInterceptor,
 } from './core/interceptors/auth.interceptor';
+import { NotificationsComponent } from './core/notifications/notifications/notifications.component';
 
 @NgModule({
   declarations: [AppComponent],
+  providers: [
+    provideClientHydration(),
+    provideHttpClient(
+      withFetch(),
+      withInterceptors([URLInterceptor, errorInterceptor]),
+      withInterceptorsFromDi(),
+    ),
+  ],
+  bootstrap: [AppComponent],
   imports: [
     // HttpClientModule, // replace provideHttpClient(...)
     BrowserModule,
     AppRoutingModule,
     SharedModule,
     CoreModule,
-
     OAuthModule.forRoot(),
+    NotificationsComponent,
   ],
-  providers: [
-    provideClientHydration(),
-
-    provideHttpClient(
-      withFetch(),
-      withInterceptors([URLInterceptor, errorInterceptor]),
-      withInterceptorsFromDi(), // use HTTP_INTERCEPTORS - class AuthInterceptor
-    ),
-  ],
-  bootstrap: [AppComponent],
 })
 export class AppModule {}
 
