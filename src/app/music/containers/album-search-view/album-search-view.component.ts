@@ -1,8 +1,10 @@
-import { Component, inject } from '@angular/core';
+import { Component, PLATFORM_ID, inject } from '@angular/core';
 import { SearchFormComponent } from '../../components/search-form/search-form.component';
 import { ResultsGridComponent } from '../../components/results-grid/results-grid.component';
 import { MusicAPIService } from '../../../core/services/music-api.service';
 import { Album } from '../../../core/model/Album';
+import { ActivatedRoute, Router } from '@angular/router';
+import { isPlatformServer } from '@angular/common';
 
 @Component({
   selector: 'app-album-search-view',
@@ -13,8 +15,21 @@ import { Album } from '../../../core/model/Album';
 })
 export class AlbumSearchViewComponent {
   api = inject(MusicAPIService);
-  results: Album[] = [];
+  router = inject(Router);
+  route = inject(ActivatedRoute);
+  pid = inject(PLATFORM_ID);
+
+  query: string | null = '';
   message = '';
+  results: Album[] = [];
+
+  ngOnInit(): void {
+    // this.route.snapshot.paramMap
+    if (isPlatformServer(this.pid)) return;
+
+    this.query = this.route.snapshot.queryParamMap.get('q');
+    if (this.query) this.searchAlbums(this.query);
+  }
 
   searchAlbums(query = '') {
     this.api.search(query).subscribe({

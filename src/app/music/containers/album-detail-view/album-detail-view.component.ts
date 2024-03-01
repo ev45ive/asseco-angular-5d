@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Router } from 'express';
 
 @Component({
   selector: 'app-album-detail-view',
@@ -8,5 +10,5 @@ import { Component } from '@angular/core';
   styleUrl: './album-detail-view.component.scss'
 })
 export class AlbumDetailViewComponent {
-
+ 
 }

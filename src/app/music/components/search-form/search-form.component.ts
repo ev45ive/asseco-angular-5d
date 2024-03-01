@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, inject } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { AlbumSearchViewComponent } from '../../containers/album-search-view/album-search-view.component';
 import {
   AbstractControl,
@@ -54,7 +54,12 @@ export class SearchFormComponent {
     });
   };
 
-  query = '';
+  @Input() set query(q: string | null) {
+    this.searchForm.get('query')?.setValue(q || '',{
+      // emitEvent: false 
+    });
+  }
+
   showAdvanced = false;
 
   builder = inject(NonNullableFormBuilder);
@@ -112,6 +117,6 @@ export class SearchFormComponent {
   }
 
   submit() {
-    this.search.emit(this.query);
+    this.search.emit(this.queryField.value);
   }
 }
