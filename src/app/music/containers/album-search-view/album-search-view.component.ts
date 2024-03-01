@@ -25,23 +25,17 @@ export class AlbumSearchViewComponent {
   results: Album[] = [];
 
   ngOnInit(): void {
-    // this.route.snapshot.paramMap
     if (isPlatformServer(this.pid)) return;
 
-    // this.query = this.route.snapshot.queryParamMap.get('q');
-    // if (this.query) this.searchAlbums(this.query);
+    const queryChanges = this.route.queryParamMap.pipe(
+      map((pm) => pm.get('q') || ''),
+    );
 
-    this.route.queryParamMap
-      .pipe(
-        map((pm) => pm.get('q') || ''),
-        // filter( q => q !== null)
-      )
-      .subscribe((q) => (this.query = q));
+    queryChanges.subscribe((q) => (this.query = q));
+    queryChanges.subscribe((q) => this.searchAlbums(q));
   }
 
   searchAlbums(query = '') {
-    // this.router.navigate(['/music','search'])
-    // this.router.navigate(['..','search'], {
     this.router.navigate([], {
       relativeTo: this.route,
       queryParams: { q: query },
