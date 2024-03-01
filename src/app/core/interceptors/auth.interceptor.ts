@@ -8,8 +8,17 @@ import {
 } from '@angular/common/http';
 import { ErrorHandler, inject } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
-import { Observable, catchError, pipe, retry, throwError, timer } from 'rxjs';
+import {
+  EMPTY,
+  Observable,
+  catchError,
+  pipe,
+  retry,
+  throwError,
+  timer,
+} from 'rxjs';
 import { API_URL } from '../tokens';
+import { NotificationsService } from '../services/notifications.service';
 
 // Standalone
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
@@ -58,6 +67,7 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
 
   return next(req).pipe(
     exponentialBackoffRetry(3),
+
     catchError((error, catchedObservable) => {
       errorHandler.handleError(error);
 
@@ -73,7 +83,17 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
 
       return throwError(() => new Error(error.error.error.message));
     }),
+    catchAndNotify(),
   );
+};
+
+export const catchAndNotify = <T>() => {
+  const notifications = inject(NotificationsService);
+
+  return catchError<T, Observable<T>>((error) => {
+    notifications.error(error);
+    return EMPTY;
+  });
 };
 
 // try{

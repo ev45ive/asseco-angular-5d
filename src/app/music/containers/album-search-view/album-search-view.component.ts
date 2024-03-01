@@ -30,7 +30,6 @@ export class AlbumSearchViewComponent {
   router = inject(Router);
   route = inject(ActivatedRoute);
   pid = inject(PLATFORM_ID);
-  notifier = catchAndNotify<AlbumResponse[]>();
 
   query: string | null = '';
   message = '';
@@ -38,7 +37,7 @@ export class AlbumSearchViewComponent {
 
   queryChanges = this.route.queryParamMap.pipe(map((pm) => pm.get('q') || ''));
   searchChanges = this.queryChanges.pipe(
-    switchMap((query) => this.api.search(query).pipe(this.notifier)),
+    switchMap((query) => this.api.search(query)),
   );
 
   ngOnInit(): void {
@@ -55,18 +54,3 @@ export class AlbumSearchViewComponent {
     });
   }
 }
-
-export const catchAndNotify = <T>() => {
-  // Inject must be called in injection context (constructor)
-
-  // Error: NG0203: inject() must be called from an injection context such as a constructor,
-  // a factory function, a field initializer, or a function used with `runInInjectionContext`.
-  // Find more at https://angular.io/errors/NG0203
-
-  const notifications = inject(NotificationsService);
-
-  return catchError<T, Observable<T>>((error) => {
-    notifications.error(error);
-    return EMPTY;
-  });
-};
