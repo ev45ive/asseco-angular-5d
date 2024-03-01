@@ -32,6 +32,13 @@ export class AlbumSearchViewComponent {
   }
 
   searchAlbums(query = '') {
+    // this.router.navigate(['/music','search'])
+    // this.router.navigate(['..','search'], {
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { q: query },
+    });
+
     this.api.search(query).subscribe({
       next: (albums) => (this.results = albums),
       error: (error) => (this.message = error.message),
