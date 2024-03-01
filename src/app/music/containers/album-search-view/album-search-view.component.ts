@@ -1,4 +1,4 @@
-import { Component, PLATFORM_ID, inject } from '@angular/core';
+import { Component, EventEmitter, PLATFORM_ID, inject } from '@angular/core';
 import { SearchFormComponent } from '../../components/search-form/search-form.component';
 import { ResultsGridComponent } from '../../components/results-grid/results-grid.component';
 import { MusicAPIService } from '../../../core/services/music-api.service';
@@ -8,6 +8,7 @@ import { isPlatformServer } from '@angular/common';
 import {
   EMPTY,
   Observable,
+  Subject,
   Subscription,
   catchError,
   concatMap,
@@ -16,6 +17,7 @@ import {
   mergeAll,
   mergeMap,
   switchMap,
+  takeUntil,
 } from 'rxjs';
 import { NotificationsService } from '../../../core/services/notifications.service';
 
@@ -36,7 +38,10 @@ export class AlbumSearchViewComponent {
   message = '';
   results: Album[] = [];
 
+  onDestory$ = new Subject();
+
   queryChanges = this.route.queryParamMap.pipe(
+    takeUntil(this.onDestory$),
     map((pm) => pm.get('q')),
     filter(Boolean),
   );
@@ -45,17 +50,15 @@ export class AlbumSearchViewComponent {
     switchMap((query) => this.api.search(query)),
   );
 
-  sub = new Subscription();
-
   ngOnInit(): void {
     if (isPlatformServer(this.pid)) return;
 
-    this.sub.add(this.queryChanges.subscribe((q) => (this.query = q)));
-    this.sub.add(this.searchChanges.subscribe((albums) => (this.results = albums)));
+    this.queryChanges.subscribe((q) => (this.query = q));
+    this.searchChanges.subscribe((albums) => (this.results = albums));
   }
 
   ngOnDestroy(): void {
-    this.sub.unsubscribe();
+    this.onDestory$.next(null);
   }
 
   searchAlbums(query = '') {
