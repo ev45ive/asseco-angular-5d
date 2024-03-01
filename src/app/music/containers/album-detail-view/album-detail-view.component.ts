@@ -7,8 +7,12 @@ import { Router } from 'express';
   standalone: true,
   imports: [],
   templateUrl: './album-detail-view.component.html',
-  styleUrl: './album-detail-view.component.scss'
+  styleUrl: './album-detail-view.component.scss',
 })
 export class AlbumDetailViewComponent {
- 
+  // get :albumId param from URL (not queryParam! param!)
+
+  // make API request
+
+  // Show album details
 }

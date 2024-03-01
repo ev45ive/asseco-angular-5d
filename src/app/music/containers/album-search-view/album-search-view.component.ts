@@ -39,27 +39,22 @@ import { NotificationsService } from '../../../core/services/notifications.servi
   imports: [SearchFormComponent, NgIf, AsyncPipe, ResultsGridComponent],
 })
 export class AlbumSearchViewComponent {
-  api = inject(MusicAPIService);
-  router = inject(Router);
+  // Navigation
   route = inject(ActivatedRoute);
-  pid = inject(PLATFORM_ID);
-
-  searchChanges?: Observable<AlbumResponse[]>;
-
   queryChanges = this.route.queryParamMap.pipe(
     map((pm) => pm.get('q')),
     filter(Boolean),
   );
 
-  ngOnInit(): void {
-    if (isPlatformServer(this.pid)) return;
+  // API
+  api = inject(MusicAPIService);
+  searchChanges = this.queryChanges.pipe(
+    switchMap((query) => this.api.searchAlbums(query)),
+    share(),
+  );
 
-    this.searchChanges = this.queryChanges.pipe(
-      switchMap((query) => this.api.search(query)),
-      share(),
-    );
-  }
-
+  // Search Form
+  router = inject(Router);
   searchAlbums(query = '') {
     this.router.navigate([], {
       relativeTo: this.route,

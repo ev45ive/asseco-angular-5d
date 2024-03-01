@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card" [routerLink]="['/music', 'albums', album.id]">
   @if (album.images[0]; as image) {
     <img
       [ngSrc]="image.url"

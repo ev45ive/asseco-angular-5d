@@ -1,7 +1,8 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { AlbumSearchResponse } from '../model/Album';
-import { map } from 'rxjs';
+import { AlbumResponse, AlbumSearchResponse } from '../model/Album';
+import { map, share } from 'rxjs';
+import { Playlist } from '../../playlists/components/playlist-list/Playlist';
 
 @Injectable({
   providedIn: 'root',
@@ -9,15 +10,22 @@ import { map } from 'rxjs';
 export class MusicAPIService {
   http = inject(HttpClient);
 
-  search(query = '') {
+  searchAlbums(query = '') {
     return this.http
       .get<AlbumSearchResponse>('search', {
         params: {
           query,
           type: 'album',
         },
-        // transferCache:{} // SSR Data transfer
       })
       .pipe(map((res) => res.albums.items));
+  }
+
+  getAlbumById(id = '') {
+    return this.http.get<AlbumResponse>('albums/' + id, {});
+  }
+
+  getPlaylistById(id = '') {
+    return this.http.get<Playlist>('playlists/' + id, {});
   }
 }
