@@ -5,7 +5,7 @@ import { MusicAPIService } from '../../../core/services/music-api.service';
 import { Album } from '../../../core/model/Album';
 import { ActivatedRoute, Router } from '@angular/router';
 import { isPlatformServer } from '@angular/common';
-import { filter, map } from 'rxjs';
+import { concatMap, filter, map, mergeAll, mergeMap, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-album-search-view',
@@ -32,12 +32,21 @@ export class AlbumSearchViewComponent {
     );
     queryChanges.subscribe((q) => (this.query = q));
 
-    queryChanges.subscribe((query) => {
-      this.api.search(query).subscribe({
+    queryChanges
+      .pipe(
+        // mergeMap((query) => this.api.search(query)), // all as they come  // merge
+        // concatMap((query) => this.api.search(query)), // all in order  // concat
+        switchMap((query) => this.api.search(query)), // only latest // debounce
+        // exhaustMap((query) => this.api.search(query)), // one at the time // throttle
+
+        //   (obs) => obs, // Observable<Observable<AlbumResponse[]>>
+        //   mergeAll(),
+        //   (obs) => obs, // Observable<AlbumResponse[]>
+      )
+      .subscribe({
         next: (albums) => (this.results = albums),
         error: (error) => (this.message = error.message),
       });
-    });
   }
 
   searchAlbums(query = '') {
