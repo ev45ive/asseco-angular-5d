@@ -25,6 +25,7 @@ import {
   switchMap,
   takeUntil,
 } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { NotificationsService } from '../../../core/services/notifications.service';
 
 @Component({
@@ -44,11 +45,12 @@ export class AlbumSearchViewComponent {
   message = '';
   results: Album[] = [];
 
-  onDestory$ = new Subject();
-  d = inject(DestroyRef).onDestroy(() => this.onDestory$.next(null));
+  // onDestory$ = new Subject();
+  // d = inject(DestroyRef).onDestroy(() => this.onDestory$.next(null));
 
   queryChanges = this.route.queryParamMap.pipe(
-    takeUntil(this.onDestory$),
+    // takeUntil(this.onDestory$),
+    takeUntilDestroyed(),
     map((pm) => pm.get('q')),
     filter(Boolean),
   );
