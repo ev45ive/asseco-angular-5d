@@ -23,6 +23,7 @@ import {
   map,
   mergeAll,
   mergeMap,
+  share,
   switchMap,
   takeUntil,
   tap,
@@ -55,6 +56,13 @@ export class AlbumSearchViewComponent {
 
     this.searchChanges = this.queryChanges.pipe(
       switchMap((query) => this.api.search(query)),
+      share()
+      // share({
+      //   connector: () => new ReplaySubject(2,2000),
+      //   resetOnRefCountZero: true,
+      //   resetOnComplete: true,
+      //   resetOnError: true
+      // }),
     );
   }
 
