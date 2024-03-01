@@ -44,20 +44,18 @@ export class AlbumSearchViewComponent {
   searchChanges = this.queryChanges.pipe(
     switchMap((query) => this.api.search(query)),
   );
-  
-  sub1?: Subscription;
-  sub2?: Subscription;
+
+  sub = new Subscription();
 
   ngOnInit(): void {
     if (isPlatformServer(this.pid)) return;
 
-    this.sub1 = this.queryChanges.subscribe((q) => (this.query = q));
-    this.sub2 = this.searchChanges.subscribe((albums) => (this.results = albums));
+    this.sub.add(this.queryChanges.subscribe((q) => (this.query = q)));
+    this.sub.add(this.searchChanges.subscribe((albums) => (this.results = albums)));
   }
 
   ngOnDestroy(): void {
-    this.sub1?.unsubscribe()
-    this.sub2?.unsubscribe()
+    this.sub.unsubscribe();
   }
 
   searchAlbums(query = '') {
