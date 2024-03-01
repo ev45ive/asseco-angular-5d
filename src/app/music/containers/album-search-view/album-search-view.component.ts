@@ -8,6 +8,7 @@ import { isPlatformServer } from '@angular/common';
 import {
   EMPTY,
   Observable,
+  Subscription,
   catchError,
   concatMap,
   filter,
@@ -35,16 +36,28 @@ export class AlbumSearchViewComponent {
   message = '';
   results: Album[] = [];
 
-  queryChanges = this.route.queryParamMap.pipe(map((pm) => pm.get('q') || ''));
+  queryChanges = this.route.queryParamMap.pipe(
+    map((pm) => pm.get('q')),
+    filter(Boolean),
+  );
+
   searchChanges = this.queryChanges.pipe(
     switchMap((query) => this.api.search(query)),
   );
+  
+  sub1?: Subscription;
+  sub2?: Subscription;
 
   ngOnInit(): void {
     if (isPlatformServer(this.pid)) return;
 
-    this.queryChanges.subscribe((q) => (this.query = q));
-    this.searchChanges.subscribe((albums) => (this.results = albums));
+    this.sub1 = this.queryChanges.subscribe((q) => (this.query = q));
+    this.sub2 = this.searchChanges.subscribe((albums) => (this.results = albums));
+  }
+
+  ngOnDestroy(): void {
+    this.sub1?.unsubscribe()
+    this.sub2?.unsubscribe()
   }
 
   searchAlbums(query = '') {
