@@ -1,26 +1,33 @@
-<div class="row">
+@if (album | async; as album) {
+  <div class="row">
     <div class="col">
-        <h1 class="display-1">Album titler here</h1>
-        album id
+      <h1 class="display-1">{{ album.name }}</h1>
+      {{ album.id }}
     </div>
-</div>
-<div class="row">
+  </div>
+  <div class="row">
     <div class="col">
-        <!-- <app-album-card/> -->
+      <app-album-card [album]="album" />
     </div>
     <div class="col">
-        <dl>
-            <dt>Artist</dt>
-            <dd>artists[0].name</dd>
-            <dt>Release Date</dt>
-            <dd>123123213</dd>
-            <dt>Number of tracks</dt>
-            <dd>123</dd>
-        </dl>
+      <dl>
+        <dt>Artist</dt>
+        <dd>{{ album.artists[0].name }}</dd>
+        <dt>Release Date</dt>
+        <dd>{{ album.release_date | date: "DD/MM/YYYY" }}</dd>
+        <dt>Number of tracks</dt>
+        <dd>{{ album.total_tracks }}</dd>
+      </dl>
 
-        <div class="list-group">
-            <div class="list-group-item">1. Track 01</div>
-            <div class="list-group-item">2. Track 02</div>
-        </div>
+      <div class="list-group">
+        @for (track of album.tracks.items; track track.id) {
+          <div class="list-group-item">
+            {{ track.track_number }} {{ track.name }}
+          </div>
+        } @empty {
+          <div class="list-group-item">No tracks</div>
+        }
+      </div>
     </div>
-</div>
+  </div>
+}

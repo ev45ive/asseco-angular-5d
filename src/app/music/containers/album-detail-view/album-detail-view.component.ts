@@ -1,18 +1,25 @@
 import { Component, inject } from '@angular/core';
+import { AlbumCardComponent } from '../../components/album-card/album-card.component';
 import { ActivatedRoute } from '@angular/router';
-import { Router } from 'express';
+import { filter, map, switchMap } from 'rxjs';
+import { MusicAPIService } from '../../../core/services/music-api.service';
+import { AsyncPipe, DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-album-detail-view',
   standalone: true,
-  imports: [],
+  imports: [AlbumCardComponent, DatePipe, AsyncPipe],
   templateUrl: './album-detail-view.component.html',
   styleUrl: './album-detail-view.component.scss',
 })
 export class AlbumDetailViewComponent {
-  // get :albumId param from URL (not queryParam! param!)
+  route = inject(ActivatedRoute);
+  albumId = this.route.paramMap.pipe(
+    map((pm) => pm.get('albumId')),
+    filter(Boolean),
+  );
 
   // make API request
-
-  // Show album details
+  api = inject(MusicAPIService);
+  album = this.albumId.pipe(switchMap((id) => this.api.getAlbumById(id)));
 }
