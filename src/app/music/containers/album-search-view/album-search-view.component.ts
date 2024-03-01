@@ -2,6 +2,7 @@ import {
   Component,
   DestroyRef,
   EventEmitter,
+  OnDestroy,
   PLATFORM_ID,
   inject,
 } from '@angular/core';
@@ -45,18 +46,15 @@ export class AlbumSearchViewComponent {
   message = '';
   results: Album[] = [];
 
-  // onDestory$ = new Subject();
-  // d = inject(DestroyRef).onDestroy(() => this.onDestory$.next(null));
-
   queryChanges = this.route.queryParamMap.pipe(
-    // takeUntil(this.onDestory$),
-    takeUntilDestroyed(),
     map((pm) => pm.get('q')),
     filter(Boolean),
+    takeUntilDestroyed(),
   );
 
   searchChanges = this.queryChanges.pipe(
     switchMap((query) => this.api.search(query)),
+    takeUntilDestroyed(), // After requests!
   );
 
   ngOnInit(): void {
