@@ -7,6 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { isPlatformServer } from '@angular/common';
 import {
   EMPTY,
+  Observable,
   catchError,
   concatMap,
   filter,
@@ -15,6 +16,7 @@ import {
   mergeMap,
   switchMap,
 } from 'rxjs';
+import { NotificationsService } from '../../../core/services/notifications.service';
 
 @Component({
   selector: 'app-album-search-view',
@@ -27,30 +29,21 @@ export class AlbumSearchViewComponent {
   api = inject(MusicAPIService);
   router = inject(Router);
   route = inject(ActivatedRoute);
+
   pid = inject(PLATFORM_ID);
 
   query: string | null = '';
   message = '';
   results: Album[] = [];
 
+  queryChanges = this.route.queryParamMap.pipe(map((pm) => pm.get('q') || ''));
+
   ngOnInit(): void {
     if (isPlatformServer(this.pid)) return;
 
-    const queryChanges = this.route.queryParamMap.pipe(
-      map((pm) => pm.get('q') || ''),
-    );
-    queryChanges.subscribe((q) => (this.query = q));
-
-    queryChanges
-      .pipe(
-        switchMap((query) =>
-          this.api
-            .search(query)
-            .pipe(
-              catchError((error) => ((this.message = error.message), EMPTY)),
-            ),
-        ),
-      )
+    this.queryChanges.subscribe((q) => (this.query = q));
+    const searchChanges = this.queryChanges
+      .pipe(switchMap((query) => this.api.search(query).pipe(catchAndNotify())))
       .subscribe((albums) => (this.results = albums));
   }
 
@@ -61,3 +54,18 @@ export class AlbumSearchViewComponent {
     });
   }
 }
+
+export const catchAndNotify = <T>() => {
+  // Inject must be called in injection context (constructor)
+
+  // Error: NG0203: inject() must be called from an injection context such as a constructor, 
+  // a factory function, a field initializer, or a function used with `runInInjectionContext`.
+  // Find more at https://angular.io/errors/NG0203
+
+  const notifications = inject(NotificationsService);
+
+  return catchError<T, Observable<T>>((error) => {
+    notifications.error(error);
+    return EMPTY;
+  });
+};
