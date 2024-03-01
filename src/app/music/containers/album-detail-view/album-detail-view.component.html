@@ -1,48 +1,48 @@
-@defer {
-  @if (album | async; as album) {
-    <div class="row">
-      <div class="col">
-        <h1 class="display-1">{{ album.name }}</h1>
-        {{ album.id }}
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <app-album-card [album]="album" />
-      </div>
-      <div class="col">
-        <dl>
-          <dt>Artist</dt>
-          <dd>{{ album.artists[0].name }}</dd>
+<!-- @defer {
+  @if (album | async; as album) { -->
+<div class="row">
+  <div class="col">
+    <h1 class="display-1">{{ album.name }}</h1>
+    {{ album.id }}
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <app-album-card [album]="album" />
+  </div>
+  <div class="col">
+    <dl>
+      <dt>Artist</dt>
+      <dd>{{ album.artists[0].name }}</dd>
 
-          <dt>Release Date</dt>
-          <dd>{{ album.release_date | date: "dd/MM/YYYY" }}</dd>
+      <dt>Release Date</dt>
+      <dd>{{ album.release_date | date: "dd/MM/YYYY" }}</dd>
 
-          <dt>Number of tracks</dt>
-          <dd>{{ album.total_tracks }}</dd>
-        </dl>
+      <dt>Number of tracks</dt>
+      <dd>{{ album.total_tracks }}</dd>
+    </dl>
 
-        <audio
-          #audioRef
-          [src]="selectedTrack?.preview_url"
-          class="w-100 my-2"
-          controls
-        ></audio>
+    <audio
+      #audioRef
+      [src]="selectedTrack?.preview_url"
+      class="w-100 my-2"
+      controls
+    ></audio>
 
-        <div class="list-group">
-          @for (track of album.tracks.items; track track.id) {
-            <div
-              class="list-group-item"
-              (click)="play(track)"
-              [class.active]="track.id === selectedTrack?.id"
-            >
-              {{ track.track_number }} {{ track.name }}
-            </div>
-          } @empty {
-            <div class="list-group-item">No tracks</div>
-          }
+    <div class="list-group">
+      @for (track of album.tracks.items; track track.id) {
+        <div
+          class="list-group-item"
+          (click)="play(track)"
+          [class.active]="track.id === selectedTrack?.id"
+        >
+          {{ track.track_number }} {{ track.name }}
         </div>
-      </div>
+      } @empty {
+        <div class="list-group-item">No tracks</div>
+      }
     </div>
-  }
-}
+  </div>
+</div>
+<!-- }
+} -->

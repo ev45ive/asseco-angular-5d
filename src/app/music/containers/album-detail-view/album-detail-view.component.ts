@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { AlbumCardComponent } from '../../components/album-card/album-card.component';
 import { ActivatedRoute } from '@angular/router';
-import { filter, map, switchMap } from 'rxjs';
+import { filter, map, switchMap, tap } from 'rxjs';
 import { MusicAPIService } from '../../../core/services/music-api.service';
 import { AsyncPipe, DatePipe } from '@angular/common';
 import { Track } from '../../../core/model/Album';
@@ -21,28 +21,15 @@ import { Track } from '../../../core/model/Album';
   styleUrl: './album-detail-view.component.scss',
 })
 export class AlbumDetailViewComponent {
+  album = inject(ActivatedRoute).snapshot.data['album'];
+
   selectedTrack?: Track;
-
-  // audioRef = viewChild<ElementRef<HTMLAudioElement>>('audioRef');
-
   @ViewChild('audioRef')
   audioRef?: ElementRef<HTMLAudioElement>;
+  // audioRef = viewChild<ElementRef<HTMLAudioElement>>('audioRef');
 
   play(track: Track) {
     this.selectedTrack = track;
     setTimeout(() => this.audioRef?.nativeElement.play());
-
-    // Only in injection context
-    // afterRender(() => this.audioRef?.nativeElement.play());
   }
-
-  route = inject(ActivatedRoute);
-  albumId = this.route.paramMap.pipe(
-    map((pm) => pm.get('albumId')),
-    filter(Boolean),
-  );
-
-  // make API request
-  api = inject(MusicAPIService);
-  album = this.albumId.pipe(switchMap((id) => this.api.getAlbumById(id)));
 }
