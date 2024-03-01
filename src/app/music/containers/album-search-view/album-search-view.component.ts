@@ -30,20 +30,20 @@ export class AlbumSearchViewComponent {
     const queryChanges = this.route.queryParamMap.pipe(
       map((pm) => pm.get('q') || ''),
     );
-
     queryChanges.subscribe((q) => (this.query = q));
-    queryChanges.subscribe((q) => this.searchAlbums(q));
+
+    queryChanges.subscribe((query) => {
+      this.api.search(query).subscribe({
+        next: (albums) => (this.results = albums),
+        error: (error) => (this.message = error.message),
+      });
+    });
   }
 
   searchAlbums(query = '') {
     this.router.navigate([], {
       relativeTo: this.route,
       queryParams: { q: query },
-    });
-
-    this.api.search(query).subscribe({
-      next: (albums) => (this.results = albums),
-      error: (error) => (this.message = error.message),
     });
   }
 }
