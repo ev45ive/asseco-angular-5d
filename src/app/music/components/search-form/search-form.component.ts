@@ -57,28 +57,26 @@ export class SearchFormComponent {
   query = '';
   showAdvanced = false;
 
-  // builder = inject(FormBuilder);
   builder = inject(NonNullableFormBuilder);
-
   searchForm = this.createForm();
 
-  constructor() {
-    const field = this.searchForm.get('query')!;
-    const valueChanges = field.valueChanges;
-    const statusChanges = field.statusChanges;
+  queryField = this.searchForm.get('query')!;
 
-    const validValues = statusChanges.pipe(
-      withLatestFrom(valueChanges),
-      filter(([status, value]) => status === 'VALID'),
-      map(([status, value]) => value),
-    );
+  validValues = this.queryField.statusChanges.pipe(
+    withLatestFrom(this.queryField.valueChanges),
+    filter(([status, value]) => status === 'VALID'),
+    map(([status, value]) => value),
+  );
 
-    const searchChanges = validValues.pipe(
-      debounceTime(500),
-      distinctUntilChanged(),
-    );
+  searchChanges = this.validValues.pipe(
+    debounceTime(500),
+    distinctUntilChanged(),
+  );
 
-    searchChanges.subscribe(this.search);
+  ngOnInit(): void {
+    this.searchChanges.subscribe(this.search);
+    // valueChanges.subscribe(console.log)
+    // statusChanges.subscribe(console.log)
   }
 
   markets = this.searchForm.get(['advanced', 'markets']) as FormArray<
