@@ -11,8 +11,19 @@ export interface Notification {
 })
 export class NotificationsService {
   notificationChanges = new EventEmitter<Notification>();
+  notificationDismissed = new EventEmitter<Notification>();
 
-  constructor() {}
+  constructor() {
+    this.notificationChanges.subscribe((n) => {
+      setTimeout(() => {
+        this.notificationDismissed.next(n);
+      }, 2000);
+    });
+  }
+
+  dismiss(n: Notification) {
+    this.notificationDismissed.next(n);
+  }
 
   notify(message: string) {
     this.notificationChanges.next({

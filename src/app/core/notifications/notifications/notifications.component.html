@@ -23,8 +23,10 @@
           ></button>
         </div> -->
 
-        <div class="align-items-center d-flex justify-content-between" 
-        [class.bg-danger]="notification.name === 'Error'">
+        <div
+          class="align-items-center d-flex justify-content-between"
+          [class.bg-danger]="notification.name === 'Error'"
+        >
           <div
             class="toast-body"
             [class.text-white]="notification.name === 'Error'"
@@ -32,8 +34,9 @@
             {{ notification.message }}
           </div>
           <button
+            (click)="dismiss(notification)"
             type="button"
-            class="btn-close me-2 m-auto" 
+            class="btn-close me-2 m-auto"
             data-bs-dismiss="toast"
             aria-label="Close"
           ></button>

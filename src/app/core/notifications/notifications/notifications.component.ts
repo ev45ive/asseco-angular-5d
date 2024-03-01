@@ -16,11 +16,19 @@ export class NotificationsComponent {
   service = inject(NotificationsService);
 
   notifications: Notification[] = [
-    { message: 'test', name: 'Notification' },
-    { message: 'error', name: 'Error' },
+    // { message: 'test', name: 'Notification' },
+    // { message: 'error', name: 'Error' },
   ];
 
+  dismiss(n: Notification) {
+    this.service.dismiss(n);
+  }
+
   ngOnInit(): void {
+    this.service.notificationDismissed.subscribe((dismissed) => {
+      this.notifications = this.notifications.filter((n) => n !== dismissed);
+    });
+
     this.service.notificationChanges
       .pipe(
         // tap(console.log),
