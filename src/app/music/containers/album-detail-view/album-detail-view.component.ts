@@ -1,6 +1,7 @@
 import {
   Component,
   ElementRef,
+  Input,
   ViewChild,
   afterRender,
   inject,
@@ -11,7 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 import { filter, map, switchMap, tap } from 'rxjs';
 import { MusicAPIService } from '../../../core/services/music-api.service';
 import { AsyncPipe, DatePipe } from '@angular/common';
-import { Track } from '../../../core/model/Album';
+import { AlbumResponse, Track } from '../../../core/model/Album';
 
 @Component({
   selector: 'app-album-detail-view',
@@ -21,7 +22,11 @@ import { Track } from '../../../core/model/Album';
   styleUrl: './album-detail-view.component.scss',
 })
 export class AlbumDetailViewComponent {
-  album = inject(ActivatedRoute).snapshot.data['album'];
+  // album = inject(ActivatedRoute).snapshot.data['album'];
+
+  @Input() albumId?: string;
+  @Input() title?: string;
+  @Input() album?: AlbumResponse;
 
   selectedTrack?: Track;
   @ViewChild('audioRef')

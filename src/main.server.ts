@@ -38,7 +38,7 @@ export const bootstrap = () =>
         withInterceptors([URLInterceptor, errorInterceptor]),
         withInterceptorsFromDi(),
       ),
-      provideRouter(routes),
+      provideRouter(routes, withComponentInputBinding()),
       provideOAuthClient(),
       {
         provide: API_URL,
