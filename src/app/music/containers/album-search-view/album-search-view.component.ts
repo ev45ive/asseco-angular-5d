@@ -25,6 +25,7 @@ import {
   mergeMap,
   switchMap,
   takeUntil,
+  tap,
 } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { NotificationsService } from '../../../core/services/notifications.service';
@@ -40,15 +41,22 @@ export class AlbumSearchViewComponent {
   api = inject(MusicAPIService);
   router = inject(Router);
   route = inject(ActivatedRoute);
+  pid = inject(PLATFORM_ID);
+
+  searchChanges?: Observable<AlbumResponse[]>;
 
   queryChanges = this.route.queryParamMap.pipe(
     map((pm) => pm.get('q')),
     filter(Boolean),
   );
 
-  searchChanges = this.queryChanges.pipe(
-    switchMap((query) => this.api.search(query)),
-  );
+  ngOnInit(): void {
+    if (isPlatformServer(this.pid)) return;
+
+    this.searchChanges = this.queryChanges.pipe(
+      switchMap((query) => this.api.search(query)),
+    );
+  }
 
   searchAlbums(query = '') {
     this.router.navigate([], {

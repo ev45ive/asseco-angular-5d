@@ -5,21 +5,18 @@
       [query]="queryChanges | async"
       (search)="searchAlbums($event)"
     />
+
+    @if (searchChanges | async; as results) {
+      <p>Found {{ results.length }} results</p>
+    }
   </div>
 </div>
+
+
 <div class="row">
   <div class="col">
-
-    <!-- <ng-container *ngIf="pokazNaŻądanie"> -->
-      
-    <!-- <ng-container *ngIf="searchChanges | async let results = $implicit"> -->
-    <ng-container *ngIf="searchChanges | async as results">
-
-      <p>Found {{ results.length }} results</p>
+    @if (searchChanges | async; as results) {
       <app-results-grid [results]="results" />
-
-    </ng-container>
-
-    <!-- </ng-container> -->
+    }
   </div>
 </div>
