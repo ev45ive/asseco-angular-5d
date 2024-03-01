@@ -2,15 +2,15 @@
   <!-- {{navApi.open}} -->
 
   <li #appLink appLink class="nav-item">
-    <a class="nav-link active" aria-current="page" href="#">Home</a>
+    <a class="nav-link" routerLinkActive="placki active" routerLink="/playlists"
+      >Playlists</a
+    >
   </li>
 
-  <li #appLink appLink class="nav-item">
-    <a class="nav-link" href="/playlists">Playlists</a>
-  </li>
-
-  <li #appLink appLink class="nav-item">
-    <a class="nav-link" href="/music">Search</a>
+  <li #appLink appLink class="nav-item" routerLinkActive="placki" #rla="routerLinkActive">
+    <a class="nav-link" routerLinkActive="placki active" [routerLink]="['/music']">
+      {{ rla.isActive? '&raquo;' : ''}}
+      Search</a>
   </li>
 
   <ng-container ngProjectAs="profile">
