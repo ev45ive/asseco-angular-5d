@@ -26,9 +26,13 @@ export class AlbumSearchViewComponent {
   ngOnInit(): void {
     // this.route.snapshot.paramMap
     if (isPlatformServer(this.pid)) return;
+    // this.query = this.route.snapshot.queryParamMap.get('q');
+    // if (this.query) this.searchAlbums(this.query);
 
-    this.query = this.route.snapshot.queryParamMap.get('q');
-    if (this.query) this.searchAlbums(this.query);
+    this.route.queryParamMap.pipe(
+      // extract param q
+      // handle empty q
+    ).subscribe((q) => (this.query = q));
   }
 
   searchAlbums(query = '') {
