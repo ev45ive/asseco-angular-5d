@@ -31,15 +31,4 @@ const routes: Routes = [
   },
 ];
 
-@NgModule({
-  imports: [
-    // RouterModule.forRoot(routes, {
-    //   // useHash: true, // useHistory pushState or Hash
-    // }),
-  ],
-  exports: [RouterModule],
-  providers: [provideRouter(routes)],
-})
-export class AppRoutingModule {
-  // constructor(@Inject(ROUTES) private routes: Routes[]) {}
-}
+export default routes;
