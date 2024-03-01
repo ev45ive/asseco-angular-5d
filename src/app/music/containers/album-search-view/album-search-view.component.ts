@@ -5,6 +5,7 @@ import { MusicAPIService } from '../../../core/services/music-api.service';
 import { Album } from '../../../core/model/Album';
 import { ActivatedRoute, Router } from '@angular/router';
 import { isPlatformServer } from '@angular/common';
+import { filter, map } from 'rxjs';
 
 @Component({
   selector: 'app-album-search-view',
@@ -26,13 +27,16 @@ export class AlbumSearchViewComponent {
   ngOnInit(): void {
     // this.route.snapshot.paramMap
     if (isPlatformServer(this.pid)) return;
+
     // this.query = this.route.snapshot.queryParamMap.get('q');
     // if (this.query) this.searchAlbums(this.query);
 
-    this.route.queryParamMap.pipe(
-      // extract param q
-      // handle empty q
-    ).subscribe((q) => (this.query = q));
+    this.route.queryParamMap
+      .pipe(
+        map((pm) => pm.get('q') || ''),
+        // filter( q => q !== null)
+      )
+      .subscribe((q) => (this.query = q));
   }
 
   searchAlbums(query = '') {
