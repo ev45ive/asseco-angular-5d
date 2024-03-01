@@ -1,8 +1,8 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { EMPTY } from 'rxjs';
 
-interface Notification {
-  type: 'notification' | 'error';
+export interface Notification {
+  name: 'Notification' | 'Error';
   message: string;
 }
 
@@ -14,11 +14,16 @@ export class NotificationsService {
 
   constructor() {}
 
-  notify(message: string) {}
+  notify(message: string) {
+    this.notificationChanges.next({
+      name: 'Notification',
+      message,
+    });
+  }
 
   error({ message }: Error) {
     this.notificationChanges.next({
-      type: 'notification',
+      name: 'Error',
       message,
     });
     return EMPTY;

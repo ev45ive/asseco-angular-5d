@@ -1,5 +1,9 @@
 import { Component, inject } from '@angular/core';
-import { NotificationsService } from '../../services/notifications.service';
+import {
+  Notification,
+  NotificationsService,
+} from '../../services/notifications.service';
+import { scan, tap } from 'rxjs';
 
 @Component({
   selector: 'app-notifications',
@@ -11,15 +15,17 @@ import { NotificationsService } from '../../services/notifications.service';
 export class NotificationsComponent {
   service = inject(NotificationsService);
 
-  notifications = [
-    { message: 'test', name: '' },
+  notifications: Notification[] = [
+    { message: 'test', name: 'Notification' },
     { message: 'error', name: 'Error' },
   ];
 
   ngOnInit(): void {
-    
-    this.service.notificationChanges.subscribe(n => {
-      // this.notifications = n ???
-    })
+    this.service.notificationChanges
+      .pipe(
+        // tap(console.log),
+        scan((ns, n) => [...ns, n], this.notifications),
+      )
+      .subscribe((n) => (this.notifications = n));
   }
 }

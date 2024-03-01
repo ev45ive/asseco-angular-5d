@@ -2,7 +2,7 @@ import { Component, PLATFORM_ID, inject } from '@angular/core';
 import { SearchFormComponent } from '../../components/search-form/search-form.component';
 import { ResultsGridComponent } from '../../components/results-grid/results-grid.component';
 import { MusicAPIService } from '../../../core/services/music-api.service';
-import { Album } from '../../../core/model/Album';
+import { Album, AlbumResponse } from '../../../core/model/Album';
 import { ActivatedRoute, Router } from '@angular/router';
 import { isPlatformServer } from '@angular/common';
 import {
@@ -30,6 +30,7 @@ export class AlbumSearchViewComponent {
   router = inject(Router);
   route = inject(ActivatedRoute);
   pid = inject(PLATFORM_ID);
+  notifier = catchAndNotify<AlbumResponse[]>();
 
   query: string | null = '';
   message = '';
@@ -37,7 +38,7 @@ export class AlbumSearchViewComponent {
 
   queryChanges = this.route.queryParamMap.pipe(map((pm) => pm.get('q') || ''));
   searchChanges = this.queryChanges.pipe(
-    switchMap((query) => this.api.search(query).pipe(catchAndNotify())),
+    switchMap((query) => this.api.search(query).pipe(this.notifier)),
   );
 
   ngOnInit(): void {
