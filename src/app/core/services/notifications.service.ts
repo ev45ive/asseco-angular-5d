@@ -1,9 +1,10 @@
 import { EventEmitter, Injectable } from '@angular/core';
-import { EMPTY } from 'rxjs';
+import { EMPTY, delayWhen, timer } from 'rxjs';
 
 export interface Notification {
   name: 'Notification' | 'Error';
   message: string;
+  timeout?: number;
 }
 
 @Injectable({
@@ -14,11 +15,9 @@ export class NotificationsService {
   notificationDismissed = new EventEmitter<Notification>();
 
   constructor() {
-    this.notificationChanges.subscribe((n) => {
-      setTimeout(() => {
-        this.notificationDismissed.next(n);
-      }, 2000);
-    });
+    this.notificationChanges
+      .pipe(delayWhen((n) => timer(n.timeout || 2000)))
+      .subscribe(this.notificationDismissed);
   }
 
   dismiss(n: Notification) {
