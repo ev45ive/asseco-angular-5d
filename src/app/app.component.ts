@@ -5,14 +5,20 @@ import { isPlatformBrowser } from '@angular/common';
 import { NotificationsComponent } from './core/notifications/notifications/notifications.component';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
-import { RouterOutlet } from '@angular/router';
+import { RouterModule, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root, .placki[sos=malinowy]',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   standalone: true,
-  imports: [NotificationsComponent, SharedModule, CoreModule, RouterOutlet],
+  imports: [
+    NotificationsComponent,
+    RouterModule,
+    SharedModule,
+    CoreModule,
+    RouterOutlet,
+  ],
 })
 export class AppComponent {
   title = 'asseco';
